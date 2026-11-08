@@ -57,7 +57,9 @@ switchbak status
 ```
 
 It prints the endpoint, the installation, the two agents, the watched paths,
-and the bytes the server holds.
+the bytes the server holds, the `audit` line of your newest session, and the
+GitHub accounts connected to your Tenant. `github    not connected` means that
+no owner has done step 5 yet.
 
 Signup ends with this step:
 
@@ -70,7 +72,22 @@ logs in with the same email and passcode, and presses Connect GitHub.
 Pull requests get a Receipt only after that.
 ```
 
-## 4. Connect GitHub
+## 4. Read your first session
+
+When the first session reaches the server, setup ends with this line, and
+`switchbak status` prints the same line under `uploads`:
+
+```text
+Read what the audit of your newest session found:
+
+  switchbak audit <path>
+```
+
+Run that line. It prints the Verdict, the count of Findings, and one line for
+each Finding. If the Audit is not finished, it waits for it. You do not need
+GitHub for this step.
+
+## 5. Connect GitHub
 
 Do this once per organisation. An owner of the GitHub organisation does it.
 
@@ -87,7 +104,7 @@ again.
 The Receipt check and the Receipt comment appear on the next push to a pull
 request in a chosen repository.
 
-## 5. Erase a session
+## 6. Erase a session
 
 ```bash
 switchbak erase <path>
@@ -102,7 +119,7 @@ Erase does not reach a backup until the backup ages out, the copy that the
 Audit Service holds, or a Receipt that is on GitHub.
 [Where your data goes](DATA-NOTICE.md) says what each of those keeps.
 
-## 6. Pause, upgrade, remove
+## 7. Pause, upgrade, remove
 
 ```bash
 switchbak pause      # the watcher submits nothing until resume
@@ -124,7 +141,7 @@ keychain item `switchbak`. Delete them yourself if you want nothing left.
 Teardown erases nothing on the server. Use `switchbak erase` for that before
 you remove the client.
 
-## 7. Where your data goes
+## 8. Where your data goes
 
 Each place a session goes, what is held there, and what erase removes:
 [Where your data goes](DATA-NOTICE.md).
