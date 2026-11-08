@@ -62,7 +62,9 @@ index and the Receipts.
 ### The Audit Service
 
 The warehouse sends each upload to the Audit Service, which reads the session
-and answers with a verdict and findings. The Audit Service is a language-model
+and answers with a verdict and findings. A session that ended more than one
+day before your signup is stored and not sent, until you run
+`switchbak audit <path>` for it. The Audit Service is a language-model
 service that switchback operates. The warehouse sends each timestamped line
 of the session in order. Before it sends, it replaces a repeated attachment or
 tool output with a reference to the first copy, replaces each image with its
