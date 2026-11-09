@@ -43,7 +43,7 @@ with that in mind.
 
 ## Where a session goes
 
-<!-- services/sep/docs/RETENTION.md; AUDITOR.md; ARCHITECTURE.md section 11;
+<!-- services/sep/docs/RETENTION.md; AUDITOR.md; ARCHITECTURE.md sections 9 and 11;
      just sep github-app; infrastructure/aws/bucket.tf, variables.tf. -->
 
 ### The warehouse
@@ -54,6 +54,12 @@ installation and the client version. The warehouse runs in an AWS account that
 switchback operates, in the region `us-west-2`. It holds the data of your
 organisation in a Postgres schema and role of its own. A login of another
 organisation cannot read it.
+
+Within your organisation, each person who signed up with its passcode can read
+every session of the organisation, with its prompts and code, and every Receipt.
+The warehouse does not limit a login to the sessions of its own person. The
+passcode is therefore a secret of your organisation. Do not give it to a person
+who must not read your sessions.
 
 The warehouse keeps each session until erase. From the bytes it derives the
 records it serves: the lines of the session, the facts it extracts, the search

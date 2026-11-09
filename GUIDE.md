@@ -27,8 +27,10 @@ switchbak signup
 
 Signup asks for your email and the passcode from the invitation. The passcode
 belongs to your organisation and is reusable. Each person enters their own
-email. Signup stores the credentials in your login keychain, and then runs
-setup.
+email. Each person who signs up with the passcode can read the sessions of
+each other person of the organisation, so do not send it outside your
+organisation. [The warehouse](DATA-NOTICE.md#the-warehouse) has the details.
+Signup stores the credentials in your login keychain, and then runs setup.
 
 If an operator gave you a refresh token that starts with `sepr_` instead of a
 passcode, run `switchbak login`, paste the token, and then run
