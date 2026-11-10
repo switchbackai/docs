@@ -5,6 +5,7 @@ switchback warehouse of your organisation. Each pull request then gets a
 Receipt: the record of the sessions behind the change. This guide takes you
 from an empty Mac to the first Receipt.
 [Where your data goes](DATA-NOTICE.md) names each place a session goes.
+Switchbak is in beta. [The beta](DATA-NOTICE.md#the-beta) names its terms.
 
 You need a Mac with Apple silicon, [Homebrew](https://brew.sh), and the
 invitation from your organisation. The invitation holds a passcode that starts
@@ -43,7 +44,8 @@ Setup asks two questions.
 - Which paths to watch. Setup finds the places where agents keep their
   session files and shows them as a checklist, by agent. Nothing is selected
   until you select it. A session under a path you did not select never
-  leaves your Mac.
+  leaves your Mac. The client masks the secrets that it finds before upload.
+  [Secrets](DATA-NOTICE.md#secrets) names what it masks and what it does not.
 - Which directories hold your git checkouts. A repository outside these
   directories is never minted, and its pull requests get no Receipt.
   `switchbak setup -root <dir>` names one later. `-root` is repeatable and
@@ -73,6 +75,26 @@ Next, once per Tenant: an owner of the GitHub organisation opens
 logs in with the same email and passcode, and presses Connect GitHub.
 Pull requests get a Receipt only after that.
 ```
+
+### Unmask a kind of secret
+
+The client masks each kind of secret. To send one kind unmasked, put its name in
+`~/.config/switchbak/unmask.conf`:
+
+```bash
+echo "jwt,bearer" > ~/.config/switchbak/unmask.conf
+launchctl kickstart -k gui/$(id -u)/dev.switchbak.switchbak
+```
+
+- Separate the names with commas or new lines. `#` starts a comment.
+- The names are `aws_access_key`, `aws_secret_key`, `gcp_api_key`,
+  `private_key`, `jwt`, `bearer`, `github_token`, `anthropic_key`,
+  `openai_key`, `slack_token`, `slack_webhook` and `env_secret`.
+- An unknown name stops each command that sends. The error lists the names.
+- The watcher reads the file when it starts. Restart it after each change, as
+  above.
+- `switchbak status` prints an `unmasked` line with the names.
+- Delete the file to mask each kind again.
 
 ## 4. Read your first session
 

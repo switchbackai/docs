@@ -2,8 +2,22 @@
 
 Switchbak sends the session files of your AI coding agents to the switchback
 warehouse of your organisation. This notice names what the client reads, what
-it sends, where each copy is held, and what erase removes. It describes what
-the software does. The privacy policy and the terms are separate documents.
+it sends, what it masks, where each copy is held, and what erase removes. It
+describes what the software does. The privacy policy and the terms are separate
+documents.
+
+## The beta
+
+Switchbak is in beta. During the beta, these terms apply:
+
+- The service runs in a development environment that is not stable. It can
+  stop or change without notice.
+- switchback does not guarantee the durability of your data. Do not use the
+  warehouse as the only copy of a session.
+- At the end of the beta, switchback deletes the data of your organisation
+  from the warehouse. The copies that erase does not reach stay, as
+  [What erase removes, and what stays](#what-erase-removes-and-what-stays)
+  names.
 
 ## What a session file holds
 
@@ -41,6 +55,41 @@ with that in mind.
   set in the shell that ran setup. Then each request sends a span to that
   address.
 
+## Secrets
+
+<!-- common/mint/redact/redact.go, Class and rules; EPD-70. -->
+
+The client masks each secret that it finds before any byte leaves your Mac. It
+writes `*` over the secret, at the same length. It masks the session files, and
+the host name and checkout table that it sends with them. The checkout table
+holds the directory and the remote URLs of each checkout. The client removes the
+user name and password from each remote URL. The warehouse masks each
+upload again with the same rules.
+
+The client and the warehouse mask these kinds of secret:
+
+- AWS access keys and AWS secret access keys.
+- Google Cloud API keys.
+- Private key blocks.
+- JSON Web Tokens and bearer tokens.
+- GitHub tokens.
+- Anthropic and OpenAI API keys.
+- Slack tokens and Slack webhook URLs.
+- `NAME=value` assignments whose upper-case name contains `SECRET`, `TOKEN`,
+  `PASSWORD`, `PASSWD`, `API_KEY`, `APIKEY`, `PRIVATE_KEY` or `CREDENTIAL`.
+
+These are not masked:
+
+- Email addresses.
+- Names of people.
+- Free text that does not match one of the kinds above, for example a password
+  that you type into a prompt as a word.
+
+Do not paste a secret into a session in any other form. Masking does not find
+every secret, so keep secrets out of your sessions. To turn off one kind of
+masking on your Mac, name it in `~/.config/switchbak/unmask.conf`.
+[Unmask a kind of secret](GUIDE.md#unmask-a-kind-of-secret) gives the names.
+
 ## Where a session goes
 
 <!-- services/sep/docs/RETENTION.md; AUDITOR.md; ARCHITECTURE.md sections 9 and 11;
@@ -65,6 +114,13 @@ The warehouse keeps each session until erase. From the bytes it derives the
 records it serves: the lines of the session, the facts it extracts, the search
 index and the Receipts.
 
+Before it keeps an upload, the warehouse masks each secret again, as
+[Secrets](#secrets) names. It keeps only a count of each kind. A session that
+the warehouse received before masking began is kept as sent.
+
+A gist is a one-line summary of a session. The warehouse writes gists with a
+language model only when your organisation asks switchback to turn them on.
+
 ### The Audit Service
 
 The warehouse sends each upload to the Audit Service, which reads the session
@@ -75,7 +131,8 @@ service that switchback operates. The warehouse sends each timestamped line
 of the session in order. Before it sends, it replaces a repeated attachment or
 tool output with a reference to the first copy, replaces each image with its
 type, size and hash, and cuts a tool output over 8 KiB to 2 KiB at each end.
-Your prompts and the code in the session go as they are.
+Your prompts and the code in the session go as they are, with each secret
+masked again.
 
 The Audit Service holds its copy on its own terms. Erase does not reach it.
 
