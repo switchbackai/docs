@@ -94,6 +94,11 @@ audits only the sessions active from one day before your signup on. For a
 past session, `switchbak status` says it has no Audit yet, and
 `switchbak audit <path>` asks for its Audit and waits for it.
 
+If the Audit of your newest session failed, `switchbak status` says so under
+the `audit` line, with one word for the reason, for example
+`its Audit failed (credit)`. Run the line to read the full message.
+`switchbak audit -json <path>` exits non-zero for an Audit that is not done.
+
 ## 5. Connect GitHub
 
 Do this once per organisation. An owner of the GitHub organisation does it.
