@@ -99,6 +99,24 @@ the `audit` line, with one word for the reason, for example
 `its Audit failed (credit)`. Run the line to read the full message.
 `switchbak audit -json <path>` exits non-zero for an Audit that is not done.
 
+### When an Audit finds something
+
+You do not need the path to read an Audit:
+
+```text
+switchbak audit -latest              # your newest session that has an Audit
+switchbak audit -repo ~/src/app      # the newest of a checkout
+switchbak audit -branch main         # the newest on a branch
+```
+
+`switchbak status` prints the newest Verdict of each checkout under your roots,
+under `verdicts`.
+
+The watcher shows a macOS notification when an Audit has a `fail` Verdict or a
+`fix` Finding. The notification gives the command that reads the Audit. To stop
+the notifications, run `switchbak notify off`. To start them again, run
+`switchbak notify on`.
+
 ## 5. Connect GitHub
 
 Do this once per organisation. An owner of the GitHub organisation does it.
