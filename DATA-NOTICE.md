@@ -15,7 +15,8 @@ Switchbak is in beta. During the beta, these terms apply:
 - switchback does not guarantee the durability of your data. Do not use the
   warehouse as the only copy of a session.
 - At the end of the beta, switchback deletes the data of your organisation
-  from the warehouse. The copies that erase does not reach stay, as
+  from the warehouse. The backups that hold it expire 30 days later. The
+  other copies that erase does not reach stay, as
   [What erase removes, and what stays](#what-erase-removes-and-what-stays)
   names.
 
