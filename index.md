@@ -14,11 +14,6 @@ There are two install steps:
 
 The sign-up command provides a GitHub link to finish setup. Check the [user guide](GUIDE.md) for the full details.
 
-## Data
-
-[Where your data goes](DATA-NOTICE.md): each place a session goes, what is
-held there, and what erase removes.
-
 ## Data Notice 
 
 Please read [where your data goes](DATA-NOTICE.md) to understand where the session goes, what is held there, and what the `erase` command removes.
