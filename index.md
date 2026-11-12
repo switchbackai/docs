@@ -1,8 +1,6 @@
-# switchbak
+# Switchbak
 
-Switchbak carries the sessions of your AI coding agents from your Mac to the
-switchback warehouse of your organisation. Each pull request then gets a
-Receipt: the record of the sessions behind the change.
+See what your agent did and why on every PR, including what it touched that it shouldn't have.
 
 ## Install
 
@@ -15,6 +13,11 @@ There are two install steps:
     switchbak signup
 
 The sign-up command provides a GitHub link to finish setup. Check the [user guide](GUIDE.md) for the full details.
+
+## Data
+
+[Where your data goes](DATA-NOTICE.md): each place a session goes, what is
+held there, and what erase removes.
 
 ## Data Notice 
 
