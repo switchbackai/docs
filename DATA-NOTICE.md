@@ -39,6 +39,10 @@ with that in mind.
   `<host>/<owner>/<name>`, and each remote URL. A checkout with no remote on a
   known host gets an id made from its path and a fingerprint of your Mac. The
   client reads no file of the checkout itself.
+- The absolute paths in the session files that it sends. When a path is inside
+  a git checkout outside your roots, as an agent's clone into a temporary
+  directory, the client sends that checkout as it sends one under the roots,
+  but only when its remote is on a known host.
 - The name of your Mac. Each file is known to the server as
   `<host name>:<absolute path>`.
 - Your email, once, at signup. It identifies you within your organisation.

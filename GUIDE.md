@@ -47,7 +47,8 @@ Setup asks two questions.
   leaves your Mac. The client masks the secrets that it finds before upload.
   [Secrets](DATA-NOTICE.md#secrets) names what it masks and what it does not.
 - Which directories hold your git checkouts. A repository outside these
-  directories is never minted, and its pull requests get no Receipt.
+  directories is minted only when a session names a clone of it. Otherwise
+  its pull requests get no Receipt.
   `switchbak setup -root <dir>` names one later. `-root` is repeatable and
   replaces the list.
 
@@ -133,11 +134,6 @@ switchbak audit -branch main         # the newest on a branch
 
 `switchbak status` prints the newest Verdict of each checkout under your roots,
 under `verdicts`.
-
-The watcher shows a macOS notification when an Audit has a `fail` Verdict or a
-`fix` Finding. The notification gives the command that reads the Audit. To stop
-the notifications, run `switchbak notify off`. To start them again, run
-`switchbak notify on`.
 
 ## 5. Connect GitHub
 
