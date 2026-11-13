@@ -6,6 +6,9 @@ it sends, what it masks, where each copy is held, and what erase removes. It
 describes what the software does. The privacy policy and the terms are separate
 documents.
 
+Switchbak is the client on your Mac. switchback is the company that operates
+the warehouse, the Audit Service and the GitHub App.
+
 ## The beta
 
 Switchbak is in beta. During the beta, these terms apply:
@@ -132,14 +135,17 @@ The warehouse sends each upload to the Audit Service, which reads the session
 and answers with a verdict and findings. A session that ended more than one
 day before your signup is stored and not sent, until you run
 `switchbak audit <path>` for it. The Audit Service is a language-model
-service that switchback operates. The warehouse sends each timestamped line
+service that switchback operates. It sends the session text through the
+Vercel AI Gateway to a language model. Most calls go to Jev, a model of
+Typesafe AI. Each Audit names the model that answered. The warehouse sends each timestamped line
 of the session in order. Before it sends, it replaces a repeated attachment or
 tool output with a reference to the first copy, replaces each image with its
 type, size and hash, and cuts a tool output over 8 KiB to 2 KiB at each end.
 Your prompts and the code in the session go as they are, with each secret
 masked again.
 
-The Audit Service holds its copy on its own terms. Erase does not reach it.
+The Audit Service, the Vercel AI Gateway and the model provider each hold the
+text they receive on their own terms. Erase does not reach them.
 
 ### GitHub
 
@@ -178,8 +184,8 @@ These stay:
   client version of the last. switchback counts installations with them.
 - Your user and your organisation, until the operator of your organisation
   revokes them.
-- The copy the Audit Service holds, the backups until they expire, and the
-  Receipts on GitHub.
+- The copies the Audit Service, the Vercel AI Gateway and the model provider
+  hold, the backups until they expire, and the Receipts on GitHub.
 
 ## On your Mac
 
