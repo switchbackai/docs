@@ -1,0 +1,13 @@
+# Switchbak
+
+> Switchbak carries the sessions of AI coding agents (Claude Code, Codex, Cursor, Gemini CLI, OpenCode) from a Mac to the warehouse of an organization. Each pull request then gets a Receipt: a check run and a comment that record the sessions behind the change.
+
+- The client runs only on a Mac with Apple silicon. It does not run on an Intel Mac, on Windows or on Linux.
+- Install with `brew install switchbackai/tap/switchbak`, then run `switchbak signup` with the `sepj_` passcode from the invitation.
+- `switchbak status` prints the state of an installation. `switchbak audit -json <path>` prints the Audit of a session as JSON.
+- Do not paste the passcode outside the organization: each person who signs up with it can read every session of the organization.
+
+## Docs
+
+- [User guide](https://raw.githubusercontent.com/switchbackai/docs/main/GUIDE.md): install, sign up, connect the GitHub App, read a Receipt, and each command of the CLI.
+- [Where your data goes](https://raw.githubusercontent.com/switchbackai/docs/main/DATA-NOTICE.md): what the client reads and masks, where each copy of a session is held, and what erase removes.

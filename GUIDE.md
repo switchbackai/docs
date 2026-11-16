@@ -1,17 +1,28 @@
 # Switchbak user guide
 
-Switchbak carries the sessions of your AI coding agents from your Mac to the
-switchback warehouse of your organisation. Each pull request then gets a
-Receipt: the record of the sessions behind the change. This guide takes you
-from an empty Mac to the first Receipt.
-[Where your data goes](DATA-NOTICE.md) names each place a session goes.
+Switchbak carries the sessions of your AI coding agents from your Mac to your
+organization's warehouse. Each pull request then gets a Receipt: the record of
+the sessions behind the change.
+
+1. [Set up Switchbak](#1-set-up-switchbak): install the client, sign up, and
+   connect GitHub.
+2. [Use Switchbak](#2-use-switchbak): read the Receipt on a pull request, and
+   run the CLI.
+
 Switchbak is in beta. [The beta](DATA-NOTICE.md#the-beta) names its terms.
+[Where your data goes](DATA-NOTICE.md) names each place a session goes.
 
-You need a Mac with Apple silicon, [Homebrew](https://brew.sh), and the
-invitation from your organisation. The invitation holds a passcode that starts
-with `sepj_`.
+You need:
 
-## 1. Install
+- A Mac with Apple silicon (M1 or later). The client does not run on a Mac
+  with an Intel processor, on Windows or on Linux.
+- [Homebrew](https://brew.sh).
+- The invitation from your organization, with a passcode that starts with
+  `sepj_`.
+
+## 1. Set up Switchbak
+
+### 1.1 Install the client
 
 ```bash
 brew install switchbackai/tap/switchbak
@@ -20,24 +31,26 @@ switchbak version
 
 `switchbak version` prints the release you installed.
 
-## 2. Sign up
+### 1.2 Sign up with the CLI
 
 ```bash
 switchbak signup
 ```
 
-Signup asks for your email and the passcode from the invitation. The passcode
-belongs to your organisation and is reusable. Each person enters their own
-email. Each person who signs up with the passcode can read the sessions of
-each other person of the organisation, so do not send it outside your
-organisation. [The warehouse](DATA-NOTICE.md#the-warehouse) has the details.
-Signup stores the credentials in your login keychain, and then runs setup.
+Signup asks for your email and the passcode from the invitation. Each person
+enters their own email. Signup stores the credentials in your login keychain,
+and then runs setup.
+
+> **Keep the passcode inside your organization.** It is reusable, and each
+> person who signs up with it can read the sessions of each other person of
+> the organization. [The warehouse](DATA-NOTICE.md#the-warehouse) has the
+> details.
 
 If an operator gave you a refresh token that starts with `sepr_` instead of a
 passcode, run `switchbak login`, paste the token, and then run
 `switchbak setup`.
 
-## 3. Set up
+#### Setup
 
 Setup asks two questions.
 
@@ -64,10 +77,10 @@ switchbak status
 
 It prints the endpoint, the installation, the two agents, the watched paths,
 the bytes the server holds, the `audit` line of your newest session, and the
-GitHub accounts connected to your Tenant. `github    not connected` means that
-no owner has done step 4 yet.
+GitHub accounts connected to your organization. `github    not connected` means that
+no owner has done step 1.3 yet.
 
-### Supported agents
+#### Supported agents
 
 Setup offers the session files of these agents. The warehouse audits the
 sessions of each, and a Receipt cites them.
@@ -83,31 +96,11 @@ sessions of each, and a Receipt cites them.
 Setup shows only the paths that exist on your Mac. Run `switchbak setup`
 again after you install another agent.
 
-### Unmask a kind of secret
+### 1.3 Connect the GitHub App
 
-The client masks each kind of secret. To send one kind unmasked, put its name in
-`~/.config/switchbak/unmask.conf`:
-
-```bash
-echo "jwt,bearer" > ~/.config/switchbak/unmask.conf
-launchctl kickstart -k gui/$(id -u)/dev.switchbak.switchbak
-```
-
-- Separate the names with commas or new lines. `#` starts a comment.
-- The names are `aws_access_key`, `aws_secret_key`, `gcp_api_key`,
-  `private_key`, `jwt`, `bearer`, `github_token`, `anthropic_key`,
-  `openai_key`, `slack_token`, `slack_webhook` and `env_secret`.
-- An unknown name stops each command that sends. The error lists the names.
-- The watcher reads the file when it starts. Restart it after each change, as
-  above.
-- `switchbak status` prints an `unmasked` line with the names.
-- Delete the file to mask each kind again.
-
-## 4. Connect GitHub
-
-Do this once per organisation, as soon as one person has signed up. An owner
-of the GitHub organisation does it. Pull requests get no Receipt until it is
-done. Step 5 does not need it.
+Do this once per organization, as soon as one person has signed up. An owner
+of the GitHub organization does it. Pull requests get no Receipt until it is
+done. [Read an Audit](#read-an-audit) does not need it.
 
 Signup ends with this step:
 
@@ -135,7 +128,60 @@ again.
 The Receipt check and the Receipt comment appear on the next push to a pull
 request in a chosen repository.
 
-## 5. Read your first session
+## 2. Use Switchbak
+
+### 2.1 The Receipt on a pull request
+
+On each push to a pull request in a connected repository, the Switchbak App
+writes a Receipt in two places: a check run named `🧾 Receipt`, and one comment
+that it edits on each push. The comment is short:
+
+> ### 🧾 Receipt
+>
+>> **🎯 Add a small retry helper for transient payment API failures.** <sub>session</sub>
+>
+> | False claims | Blast radius                            | Scope                                     |
+> | :----------- | :-------------------------------------- | :---------------------------------------- |
+> | 🟢 **None**  | 🔴 **High** <sub>billing/payments</sub> | 🟢 **None flagged** <sub>of 3 paths</sub> |
+>
+> <sub>Head 8ab31c2 · 1 Claude Code session · Open in Switchbak ↗</sub>
+
+The quote is the intent of the change, in the words of the session. The
+citation after it says who stated it and in which turn.
+
+The table has three columns:
+
+- False claims: the claims that the session made and that its own tool results
+  do not back. The session says that a check passed, and the run failed or
+  did not run.
+- Blast radius: low, medium or high, from rules on the changed paths, with the
+  reason, for example `billing/payments` or `docs only`. The Audit can raise
+  the level from what the session says. It does not lower it.
+- Scope: the changed paths that the session does not explain.
+
+A red or yellow count links to the check, which lists the detail. The check
+opens with the same intent and table, then these sections:
+
+- 🔴 False claims: each claim, what the tool results show, and the turn.
+- 🔖 Decision record: the decisions, each with the option that the session
+  rejected, then the constraints, the human redirects and the open questions.
+  Each item cites its turn. An item with no turn is not shown.
+- ↔️ Scope diff: each changed path with a mark and the reason from the session.
+
+| Mark | Meaning                                                                                             |
+| ---- | --------------------------------------------------------------------------------------------------- |
+| 🟢   | The session asked for the change.                                                                   |
+| 🧪   | A test of what the session asked for.                                                               |
+| 🟡   | Flagged: the session did not mention it, or the session promised it and the diff does not touch it. |
+| ⚪   | Flagged: the diff neither touches nor explains it.                                                  |
+
+The check adds a "Why is this here?" note to each changed file. Its title
+names the head commit that the Receipt describes and the sessions. "Open in
+Switchbak" opens the receipt on `sep.switchbak.dev`.
+
+### 2.2 CLI commands
+
+#### Read an Audit
 
 When the first session reaches the server, setup ends with this line, and
 `switchbak status` prints the same line under `uploads`:
@@ -158,9 +204,8 @@ past session, `switchbak status` says it has no Audit yet, and
 If the Audit of your newest session failed, `switchbak status` says so under
 the `audit` line, with one word for the reason, for example
 `its Audit failed (credit)`. Run the line to read the full message.
-`switchbak audit -json <path>` exits non-zero for an Audit that is not done.
 
-### When an Audit finds something
+#### Follow your Audits
 
 You do not need the path to read an Audit:
 
@@ -177,72 +222,22 @@ To have the watcher show a macOS notification for an Audit with a `fail`
 Verdict or a `fix` Finding, run `switchbak notify on`. Notifications are off
 until you turn them on. `switchbak notify off` turns them off again.
 
-## 6. Read a Receipt
-
-On each push to a pull request in a connected repository, the switchback App
-writes a Receipt in two places: a check run named `Receipt`, and one comment
-that it edits on each push. The comment starts like this:
-
-> ### 🧾 Receipt · 🟡 Needs attention
->
->> **Add a small retry helper for transient payment API failures.**
->> <sub>session</sub>
->
-> | Said vs did       | Blast radius                            | Scope                                     |
-> | :---------------- | :-------------------------------------- | :---------------------------------------- |
-> | 🟢 **None found** | 🔴 **High** <sub>billing/payments</sub> | 🟢 **None flagged** <sub>of 3 paths</sub> |
-
-The quote is the intent of the change, in the words of the session. The
-citation under it says who stated it.
-
-The heading gives one of three states:
-
-- 🟢 Normal review: nothing below asks for more than a normal review.
-- 🟡 Needs attention: the blast radius is medium or high, a path is flagged,
-  or another session touched the same files.
-- 🔴 Claims contradicted: the session says that a check passed, and its own
-  tool results do not show it.
-
-The table has three columns:
-
-- Said vs did: each claim that the session made and its tool results
-  contradict, with the turn of the claim.
-- Blast radius: low, medium or high, from rules on the changed paths, with the
-  reason, for example `billing/payments` or `docs only`. The Audit can raise
-  the level from what the session says. It does not lower it.
-- Scope: the changed paths that the session does not explain.
-
-Under the table, the Scope section lists each path with a mark and the reason
-from the session:
-
-| Mark | Meaning                                                                                             |
-| ---- | --------------------------------------------------------------------------------------------------- |
-| 🟢   | The session asked for the change.                                                                   |
-| 🧪   | A test of what the session asked for.                                                               |
-| 🟡   | Flagged: the session did not mention it, or the session promised it and the diff does not touch it. |
-| ⚪   | Flagged: the diff neither touches nor explains it.                                                  |
-
-"Human redirects" lists each time a person corrected the agent, with the turn.
-The check adds a "Why this change?" note to each changed file. "Open in
-Switchback" opens the receipt page on `sep.switchbak.dev`. The footer names the
-head commit that the Receipt describes.
-
-## 7. Erase a session
+#### Erase a session
 
 ```bash
 switchbak erase <path>
 ```
 
 `<path>` is a session file. The server erases the whole session that the file
-belongs to, from every layer of your organisation's data, and marks the file
-as erased. A later upload of the same file is refused, and `switchbak cursor`
-for it answers 410. A second erase of the same file says "already erased".
+belongs to, from every layer of your organization's data, and marks the file
+as erased. A later upload of the same file is refused. A second erase of the
+same file says "already erased".
 
-Erase does not reach a backup until the backup ages out, the copies that the
-Audit Service and its model provider hold, or a Receipt that is on GitHub.
-[Where your data goes](DATA-NOTICE.md) says what each of those keeps.
+Erase does not reach the backups until they expire, or the Receipts already on
+GitHub.
+[Erase](DATA-NOTICE.md#3-erase) has the details.
 
-## 8. Pause, upgrade, remove
+#### Pause, upgrade, remove
 
 ```bash
 switchbak pause      # the watcher submits nothing until resume
@@ -264,7 +259,7 @@ keychain item `switchbak`. Delete them yourself if you want nothing left.
 Teardown erases nothing on the server. Use `switchbak erase` for that before
 you remove the client.
 
-## 9. Commands
+#### All commands
 
 | Command                          | What it does                                                          |
 | -------------------------------- | --------------------------------------------------------------------- |
@@ -283,8 +278,3 @@ you remove the client.
 | `switchbak pause`, `resume`      | Stops and starts the uploads.                                         |
 | `switchbak erase <path>`         | Erases the session of a file from the warehouse.                      |
 | `switchbak teardown`             | Boots out the launch agents and removes their files.                  |
-
-## 10. Where your data goes
-
-Each place a session goes, what is held there, and what erase removes:
-[Where your data goes](DATA-NOTICE.md).
