@@ -1,24 +1,17 @@
 # Switchbak user guide
 
-Switchbak carries the sessions of your AI coding agents from your Mac to your
-organization's warehouse. Each pull request then gets a Receipt: the record of
-the sessions behind the change.
+Switchbak carries the sessions of your AI coding agents from your Mac to your organization's warehouse. Each pull request then gets a Receipt: the record of the sessions behind the change.
 
-1. [Set up Switchbak](#1-set-up-switchbak): install the client, sign up, and
-   connect GitHub.
-2. [Use Switchbak](#2-use-switchbak): read the Receipt on a pull request, and
-   run the CLI.
+1. [Set up Switchbak](#1-set-up-switchbak): install the client, log in with GitHub, and connect GitHub
+2. [Use Switchbak](#2-use-switchbak): read the Receipt on a pull request, run the CLI, and manage the members of your organization
 
-Switchbak is in beta. [The beta](DATA-NOTICE.md#the-beta) names its terms.
-[Where your data goes](DATA-NOTICE.md) names each place a session goes.
+Switchbak is in beta. [The beta](DATA-NOTICE.md#the-beta) names its terms. [Where your data goes](DATA-NOTICE.md) names each place a session goes.
 
 You need:
 
-- A Mac with Apple silicon (M1 or later). The client does not run on a Mac
-  with an Intel processor, on Windows or on Linux.
-- [Homebrew](https://brew.sh).
-- The invitation from your organization, with a passcode that starts with
-  `sepj_`.
+- A Mac with Apple silicon (M1 or later). The client does not run on a Mac with an Intel processor, on Windows or on Linux
+- [Homebrew](https://brew.sh)
+- A GitHub account
 
 ## 1. Set up Switchbak
 
@@ -31,43 +24,64 @@ switchbak version
 
 `switchbak version` prints the release you installed.
 
-### 1.2 Sign up with the CLI
+### 1.2 Log in
 
 ```bash
-switchbak signup
+switchbak login
 ```
 
-Signup asks for your email and the passcode from the invitation. Each person
-enters their own email. Signup stores the credentials in your login keychain,
-and then runs setup.
+Login opens your browser and prints a code. If the browser does not open, open the page that login prints.
 
-> **Keep the passcode inside your organization.** It is reusable, and each
-> person who signs up with it can read the sessions of each other person of
-> the organization. [The warehouse](DATA-NOTICE.md#the-warehouse) has the
-> details.
+1. Sign in with GitHub
+2. Make sure that the page shows the code that login printed
+3. Press Approve
 
-If an operator gave you a refresh token that starts with `sepr_` instead of a
-passcode, run `switchbak login`, paste the token, and then run
-`switchbak setup`.
+On a Mac with no browser, as over SSH, run `switchbak login --device`. It prints a page and a code. Open the page on any device, type the code, sign in with GitHub, and press Approve. Approve only a code that you typed yourself.
+
+Login then makes your account, stores the credentials in your login keychain, and runs setup. Your account is in a Switchbak organization:
+
+- A new organization, with you as its admin, when your team has not connected GitHub to Switchbak.
+- The organization of your team, when your team connected GitHub and GitHub gives you access to that installation. The page asks "Join <team> as @login" before you approve. The admins of the team see each join.
+
+The uploads start when setup ends. Uploads and Audits do not need the GitHub App.
+
+Login ends with this question:
+
+```text
+Connect GitHub now? [Y/n]
+```
+
+Press Return to do step 1.3 now.
 
 #### Setup
 
 Setup asks two questions.
 
-- Which paths to watch. Setup finds the places where agents keep their
-  session files and shows them as a checklist, by agent.
-  [Supported agents](#supported-agents) names them. Nothing is selected
-  until you select it. A session under a path you did not select never
-  leaves your Mac. The client masks the secrets that it finds before upload.
-  [Secrets](DATA-NOTICE.md#secrets) names what it masks and what it does not.
-- Which directories hold your git checkouts. A repository outside these
-  directories is minted only when a session names a clone of it. Otherwise
-  its pull requests get no Receipt.
-  `switchbak setup -root <dir>` names one later. `-root` is repeatable and
-  replaces the list.
+- Which agents to watch. Setup shows a checklist with one row for each [supported agent](#supported-agents), with the count and size of its session files. Nothing is selected until you select it. A session of an agent that you did not select never leaves your Mac. The warehouse masks the secrets that it finds on arrival.
+- Which directories hold your git checkouts. Setup shows each candidate with the count of checkouts below it. A repository outside these directories is minted only when a session names a clone of it. Otherwise its pull requests get no Receipt.
 
-Setup then loads two launch agents and waits for the first upload. A fresh
-install has no session until an agent runs, so no upload yet is not a failure.
+| Key     | What it does                                  |
+| ------- | --------------------------------------------- |
+| ↑ and ↓ | Move.                                         |
+| Space   | Select or clear the row.                      |
+| →       | Show the projects of Claude Code or Cursor.   |
+| ←       | Hide the projects.                            |
+| a       | Select each row, or clear each row.           |
+| Enter   | Confirm. On "add a path", type a path to add. |
+| Ctrl-C  | Stop. Setup changes nothing.                  |
+
+To keep one project on your Mac, select its agent, press →, and clear the project. Setup writes an exclusion for it. Codex, Gemini CLI and OpenCode do not keep their sessions by project, so they have no project rows.
+
+To change your choices later:
+
+```bash
+switchbak agents    # the agents and projects, then restart the watcher
+switchbak roots     # the directories of your checkouts
+```
+
+Each starts from your current choices. When you clear an agent, the sessions that it sent stay in the warehouse. `switchbak erase <path>` erases one.
+
+Setup then loads two launch agents and waits for the first upload. A fresh install has no session until an agent runs, so no upload yet is not a failure.
 
 Check the installation at any time:
 
@@ -75,15 +89,17 @@ Check the installation at any time:
 switchbak status
 ```
 
-It prints the endpoint, the installation, the two agents, the watched paths,
-the bytes the server holds, the `audit` line of your newest session, and the
-GitHub accounts connected to your organization. `github    not connected` means that
-no owner has done step 1.3 yet.
+It prints the endpoint, the installation, the two agents, the watched paths, the bytes the server holds, the `audit` line of your newest session, and the GitHub accounts connected to your organization. Before step 1.3, status prints:
+
+```text
+github    Receipts on pull requests are off
+```
+
+Uploads and Audits run without step 1.3. The next line names your step. An admin of your organization reads ``run `switchbak connect` to turn them on``. Another member reads the admins to ask.
 
 #### Supported agents
 
-Setup offers the session files of these agents. The warehouse audits the
-sessions of each, and a Receipt cites them.
+Setup offers the session files of these agents. The warehouse audits the sessions of each, and a Receipt cites them.
 
 | Agent       | Session files                           |
 | ----------- | --------------------------------------- |
@@ -93,40 +109,27 @@ sessions of each, and a Receipt cites them.
 | Gemini CLI  | `~/.gemini/tmp/`, `~/.gemini/sessions/` |
 | OpenCode    | `~/.local/share/opencode/storage/`      |
 
-Setup shows only the paths that exist on your Mac. Run `switchbak setup`
-again after you install another agent.
+Setup marks an agent "not found" when its session files are not on your Mac. Run `switchbak agents` after you install another agent.
 
-### 1.3 Connect the GitHub App
+### 1.3 Connect GitHub
 
-Do this once per organization, as soon as one person has signed up. An owner
-of the GitHub organization does it. Pull requests get no Receipt until it is
-done. [Read an Audit](#read-an-audit) does not need it.
-
-Signup ends with this step:
-
-```text
-Next, once per Tenant: an owner of the GitHub organisation opens
-
-  https://sep.switchbak.dev/v1/web/login
-
-logs in with the same email and passcode, and presses Connect GitHub.
-Pull requests get a Receipt only after that.
+```bash
+switchbak connect
 ```
 
-To connect:
+Do this once for each GitHub organization or account whose pull requests get a Receipt. Pull requests get no Receipt until it is done. [Read an Audit](#read-an-audit) does not need it.
 
-1. Open `https://sep.switchbak.dev/v1/web/login`.
-2. Log in with the same email and passcode as signup.
-3. Press Connect GitHub. GitHub asks which repositories the App may read.
-   Choose them.
-4. Confirm on the page that follows. The page says "Switchback is connected".
+1. Connect opens the Connect page of Switchbak in your browser
+2. Press Connect GitHub. Select which repositories the GitHub App may read
+3. Confirm on the page that follows
 
-A member who is not an owner sees "Waiting for an owner to approve". GitHub
-sent the install to an owner. Ask an owner to approve it, and then start
-again.
+Connect then prints `✓ GitHub connected`.
 
-The Receipt check and the Receipt comment appear on the next push to a pull
-request in a chosen repository.
+A member of a GitHub organization who is not an owner sees "Waiting for an owner to approve". GitHub sent the install to an owner. Ask an owner to approve it, and then run `switchbak connect` again.
+
+The Receipt check and the Receipt comment appear on the next push to a pull request in a chosen repository.
+
+When the GitHub account is already connected to the Switchbak organization of your team, connect offers to join that organization.
 
 ## 2. Use Switchbak
 
@@ -192,18 +195,11 @@ Read what the audit of your newest session found:
   switchbak audit <path>
 ```
 
-Run that line. It prints the Verdict, the count of Findings, and one line for
-each Finding. If the Audit is not finished, it waits for it. You do not need
-GitHub for this step.
+Run that line. It prints the Verdict, the count of Findings, and one line for each Finding. If the Audit is not finished, it waits for it. You do not need GitHub for this step.
 
-The first upload sends your past sessions too. The warehouse stores them, and
-audits only the sessions active from one day before your signup on. For a
-past session, `switchbak status` says it has no Audit yet, and
-`switchbak audit <path>` asks for its Audit and waits for it.
+The first upload sends your past sessions too. The warehouse stores them, and audits only the sessions active from one day before your first login on. For a past session, `switchbak status` says it has no Audit yet, and `switchbak audit <path>` asks for its Audit and waits for it.
 
-If the Audit of your newest session failed, `switchbak status` says so under
-the `audit` line, with one word for the reason, for example
-`its Audit failed (credit)`. Run the line to read the full message.
+If the Audit of your newest session failed, `switchbak status` says so under the `audit` line, with one word for the reason, for example `its Audit failed (credit)`. Run the line to read the full message.
 
 #### Follow your Audits
 
@@ -215,12 +211,9 @@ switchbak audit -repo ~/src/app      # the newest of a checkout
 switchbak audit -branch main         # the newest on a branch
 ```
 
-`switchbak status` prints the newest Verdict of each checkout under your roots,
-under `verdicts`.
+`switchbak status` prints the newest Verdict of each checkout under your roots, under `verdicts`.
 
-To have the watcher show a macOS notification for an Audit with a `fail`
-Verdict or a `fix` Finding, run `switchbak notify on`. Notifications are off
-until you turn them on. `switchbak notify off` turns them off again.
+To have the watcher show a macOS notification for an Audit with a `fail` Verdict or a `fix` Finding, run `switchbak notify on`. Notifications are off until you turn them on. `switchbak notify off` turns them off again.
 
 #### Erase a session
 
@@ -228,14 +221,24 @@ until you turn them on. `switchbak notify off` turns them off again.
 switchbak erase <path>
 ```
 
-`<path>` is a session file. The server erases the whole session that the file
-belongs to, from every layer of your organization's data, and marks the file
-as erased. A later upload of the same file is refused. A second erase of the
-same file says "already erased".
+`<path>` is a session file. The server erases the whole session that the file belongs to, from every layer of your organization's data, and marks the file as erased. A later upload of the same file is refused. A second erase of the same file says "already erased".
 
-Erase does not reach the backups until they expire, or the Receipts already on
-GitHub.
-[Erase](DATA-NOTICE.md#3-erase) has the details.
+Erase does not reach the backups until they expire, or the Receipts already on GitHub. [Erase](DATA-NOTICE.md#3-erase) has the details.
+
+#### Log in again
+
+A login with GitHub lasts while GitHub gives you access to an installation that your organization connected. When that access ends, the uploads stop, and the watcher log says:
+
+```text
+your access to <organization> ended: GitHub no longer lists one of its installations for your account. Ask an admin of <organization> for access, then run `switchbak login`
+```
+
+When the notifications are on, one banner says "Your access to <organization> ended".
+
+1. Ask an owner of the GitHub organization for access to the installation
+2. Run `switchbak login`
+
+When GitHub no longer accepts your sign-in, the log tells you to run `switchbak login` again.
 
 #### Pause, upgrade, remove
 
@@ -254,20 +257,20 @@ switchbak teardown
 brew uninstall switchbak
 ```
 
-Teardown leaves `~/.config/switchbak`, the logs in `~/Library/Logs`, and the
-keychain item `switchbak`. Delete them yourself if you want nothing left.
-Teardown erases nothing on the server. Use `switchbak erase` for that before
-you remove the client.
+Teardown leaves `~/.config/switchbak`, the logs in `~/Library/Logs`, and the keychain item `switchbak`. Delete them yourself if you want nothing left. Teardown erases nothing on the server. Use `switchbak erase` for that before you remove the client.
 
 #### All commands
 
 | Command                          | What it does                                                          |
 | -------------------------------- | --------------------------------------------------------------------- |
+| `switchbak login`                | Signs you in with GitHub, stores the credentials, and runs setup.     |
+| `switchbak login --device`       | The same, with a code that you approve on another device.             |
 | `switchbak version`              | Prints the release you installed.                                     |
-| `switchbak signup`               | Redeems a `sepj_` passcode, stores the credentials, and runs setup.   |
-| `switchbak login`                | Stores a `sepr_` refresh token that it reads on standard input.       |
+| `switchbak connect`              | Connects GitHub, so that pull requests get a Receipt.                 |
 | `switchbak setup`                | Writes the watch list and the roots, and loads the launch agents.     |
 | `switchbak setup -root <dir>`    | Replaces the roots. Repeat `-root` for each directory.                |
+| `switchbak agents`               | Chooses the agents and projects to watch, and restarts the watcher.   |
+| `switchbak roots`                | Chooses the directories that hold your checkouts.                     |
 | `switchbak status`               | Prints the installation, the uploads, the Audits and GitHub.          |
 | `switchbak audit <path>`         | Prints the Verdict and the Findings of a session, and waits for them. |
 | `switchbak audit -latest`        | The same, for your newest session that has an Audit.                  |
@@ -278,3 +281,14 @@ you remove the client.
 | `switchbak pause`, `resume`      | Stops and starts the uploads.                                         |
 | `switchbak erase <path>`         | Erases the session of a file from the warehouse.                      |
 | `switchbak teardown`             | Boots out the launch agents and removes their files.                  |
+
+### 2.3 Members of your organization
+
+An admin of your organization sees its members and can remove a member. The person who made the organization is its admin.
+
+1. Open `https://sep.switchbak.dev/v1/web/login`
+2. Press Sign in with GitHub
+3. Press Members of <organization>. The newest joins come first.
+4. Press Remove next to a member. Remove signs the member out at once.
+
+GitHub access does not add a removed member again. The login page of that person says "An admin removed you from <organization>".

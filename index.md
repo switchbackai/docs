@@ -10,9 +10,9 @@ There are two install steps:
 In your terminal: 
 
     brew install switchbackai/tap/switchbak
-    switchbak signup
+    switchbak login
 
-The sign-up command provides a GitHub link to finish setup. Check the [user guide](GUIDE.md) for the full details.
+Login signs you in with GitHub in your browser, and your sessions start to upload. It then offers to install the GitHub App (`switchbak connect`), so that your pull requests get a Receipt. Check the [user guide](GUIDE.md) for the full details.
 
 ## Data Notice 
 
