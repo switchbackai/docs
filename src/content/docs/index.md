@@ -1,3 +1,8 @@
+---
+title: Switchbak
+template: splash
+---
+
 See what your agent did and why on every PR, including what it touched that it shouldn't have.
 
 ## Install

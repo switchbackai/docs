@@ -10,5 +10,5 @@
 
 ## Docs
 
-- [User guide](https://raw.githubusercontent.com/switchbackai/docs/main/GUIDE.md): install, log in with GitHub, connect the GitHub App, join a team, read a Receipt, log in again, manage members, and each command of the CLI.
-- [Where your data goes](https://raw.githubusercontent.com/switchbackai/docs/main/DATA-NOTICE.md): what the client reads, what the warehouse masks, where each copy of a session is held, who can read it, and what erase removes.
+- [User guide](https://docs.switchbak.dev/guide/): install, log in with GitHub, connect the GitHub App, join a team, read a Receipt, log in again, manage members, and each command of the CLI.
+- [Where your data goes](https://docs.switchbak.dev/data-notice/): what the client reads, what the warehouse masks, where each copy of a session is held, who can read it, and what erase removes.
