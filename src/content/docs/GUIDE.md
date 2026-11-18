@@ -1,5 +1,6 @@
 ---
 title: Switchbak user guide
+description: Install the Switchbak client on a Mac, log in with GitHub, connect GitHub, and read the Receipt on a pull request.
 ---
 
 Switchbak carries the sessions of your AI coding agents from your Mac to your organization's warehouse. Each pull request then gets a Receipt: the record of the sessions behind the change.
@@ -121,12 +122,14 @@ switchbak connect
 
 Do this once for each GitHub organization or account whose pull requests get a Receipt. Pull requests get no Receipt until it is done. [Read an Audit](#read-an-audit) does not need it.
 
-1. Connect opens the Connect page of Switchbak in your browser. The page lists your GitHub account, and each GitHub organization that has the App and that you are a member of
-2. Press Install on your account, or on an organization. To install on an organization that is not in the list, press Install on another organization
+1. Connect opens the GitHub page that installs the Switchbak App. GitHub lists your account and your organizations, and marks each one that has the App with Configure
+2. Select your account or an organization
 3. Select which repositories the GitHub App may read
-4. Confirm on the page that follows
+4. Press Install & Authorize
 
-Connect then prints `✓ GitHub connected`. When your organization is already connected, connect prints the connected accounts and opens the page, so that you can install on your own account.
+GitHub sends your browser back to Switchbak, and the page says "Switchbak is connected". Connect then prints `✓ GitHub connected`.
+
+When your organization is already connected, connect prints the connected accounts and opens the same GitHub page, so that you can install on another account.
 
 A member of a GitHub organization who is not an owner sees "Waiting for an owner to approve". GitHub sent the install to an owner. Ask an owner to approve it, and then run `switchbak connect` again.
 
@@ -298,9 +301,8 @@ rm ~/Library/LaunchAgents/dev.switchbak.switchbak.plist ~/Library/LaunchAgents/d
 
 An admin of your organization sees its members and can remove a member. The person who made the organization is its admin.
 
-1. Open `https://sep.switchbak.dev/v1/web/login`
-2. Press Sign in with GitHub
-3. Press Members of <organization>. The newest joins come first.
-4. Press Remove next to a member. Remove signs the member out at once.
+1. Open `https://sep.switchbak.dev/v1/web/members`
+2. Press Sign in with GitHub. The members page lists the newest joins first.
+3. Press Remove next to a member. Remove signs the member out at once.
 
 GitHub access does not add a removed member again. The login page of that person says "An admin removed you from <organization>".

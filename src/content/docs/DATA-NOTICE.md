@@ -1,5 +1,6 @@
 ---
 title: Where your data goes
+description: What the Switchbak client reads and sends, what the warehouse masks, where each copy of a session is held, and what erase removes.
 ---
 
 Switchbak sends the session files of your AI coding agents to your organization's warehouse. This notice names what the client reads, what it sends, what the warehouse masks, where each copy is held, and what erase removes. It describes what the software does. The privacy policy and the terms are separate documents.
