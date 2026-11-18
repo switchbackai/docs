@@ -1,0 +1,173 @@
+---
+// A Receipt comment on a pull request, as GitHub shows it. It stays light in
+// both themes, as GitHub's light theme shows it.
+interface Cell {
+  label: string;
+  value: string;
+  tone: 'ok' | 'danger';
+  detail?: string;
+  mono?: boolean;
+}
+interface Props {
+  label: string;
+  pr: string;
+  intent: string;
+  cells: Cell[];
+  head: string;
+  sessions: string;
+  link: string;
+  caption: string;
+}
+const { label, pr, intent, cells, head, sessions, link, caption } = Astro.props;
+---
+
+<figure class="receipt" aria-label={label}>
+  <div class="card">
+    <div class="bar">
+      <svg class="mark" viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="28" fill="#0F1F1C"></rect><path d="M79.16,34.14 L44.84,54.42 L79.16,71.58 L44.84,91.86" fill="none" stroke="#13B981" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      <b translate="no">switchbak</b>
+      <span class="bot">bot</span>
+      <span class="meta">commented on {pr}</span>
+    </div>
+    <div class="body">
+      <div class="title">🧾 Receipt</div>
+      <div class="intent"><b>🎯 {intent}</b> <span class="meta">session</span></div>
+      <div class="cells">
+        {
+          cells.map((c) => (
+            <div class="cell">
+              <div class="clabel">{c.label}</div>
+              <div class:list={['cvalue', c.tone]}>
+                <span class="dot" />
+                {c.value}
+              </div>
+              {c.detail && <div class:list={['meta', { mono: c.mono }]}>{c.detail}</div>}
+            </div>
+          ))
+        }
+      </div>
+      <div class="meta">
+        Head <span class="mono">{head}</span> · {sessions} · <span class="open">{link} ↗</span>
+      </div>
+    </div>
+  </div>
+  <figcaption>{caption}</figcaption>
+</figure>
+
+<style>
+  .receipt {
+    margin: 0;
+  }
+  .card {
+    background: #ffffff;
+    color: #0f1f1c;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 21px;
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: #f6f8fa;
+    border-bottom: 1px solid #e6e3d9;
+  }
+  .mark {
+    width: 22px;
+    height: 22px;
+  }
+  .bar b {
+    font-weight: 600;
+  }
+  .bot {
+    font-size: 12px;
+    color: #646e66;
+    border: 1px solid #d4d0c3;
+    border-radius: 999px;
+    padding: 0 7px;
+    line-height: 18px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #646e66;
+  }
+  .bar .meta {
+    font-size: 13px;
+  }
+  .body {
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .title {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .intent {
+    border-left: 3px solid #d4d0c3;
+    padding: 2px 0 2px 12px;
+  }
+  .cells {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border: 1px solid #e6e3d9;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .cell {
+    padding: 10px 12px;
+  }
+  .cell + .cell {
+    border-left: 1px solid #e6e3d9;
+  }
+  .clabel {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4a564f;
+  }
+  .cvalue {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    font-weight: 700;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: currentColor;
+    flex: 0 0 auto;
+  }
+  .ok {
+    color: #0a7a53;
+  }
+  .danger {
+    color: #b23a2a;
+  }
+  .mono {
+    font-family: var(--font-mono);
+  }
+  .open {
+    color: #0a7a53;
+    font-weight: 600;
+  }
+  figcaption {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #8a948c;
+  }
+  @media (max-width: 30em) {
+    .cells {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .cell + .cell {
+      border-left: 0;
+      border-top: 1px solid #e6e3d9;
+    }
+  }
+</style>

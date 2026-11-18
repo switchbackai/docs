@@ -1,0 +1,8 @@
+---
+// The home page draws its own h1 in its hero (components/landing/Hero.astro).
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+
+const { id } = Astro.locals.starlightRoute;
+---
+
+{id !== '' && <Default />}

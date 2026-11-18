@@ -1,0 +1,88 @@
+/* Starlight's variables, mapped from the design system tokens (tokens.css).
+   Starlight inverts its gray scale in the light theme, so both themes name
+   the same roles: white and gray-1 are headings, gray-2 supporting text,
+   gray-3 muted text, gray-4 and gray-5 borders, gray-6 and gray-7 raised
+   surfaces, black the page. */
+
+:root,
+:root[data-theme='light'] {
+  --sl-font: var(--font-sans);
+  --sl-font-mono: var(--font-mono);
+
+  --sl-color-white: var(--text-primary);
+  --sl-color-gray-1: var(--text-primary);
+  --sl-color-gray-2: var(--text-secondary);
+  --sl-color-gray-3: var(--text-muted);
+  --sl-color-gray-4: var(--border-strong);
+  --sl-color-gray-5: var(--border-subtle);
+  --sl-color-gray-6: var(--surface-raised);
+  --sl-color-gray-7: var(--surface-raised);
+  --sl-color-black: var(--surface-base);
+
+  /* signal fills; signal-text is the Emerald that meets 4.5:1 as text. */
+  --sl-color-accent-low: var(--signal-surface);
+  --sl-color-accent: var(--signal);
+  --sl-color-accent-high: var(--signal-text);
+
+  --sl-color-text: var(--text-primary);
+  --sl-color-text-accent: var(--signal-text);
+  --sl-color-text-invert: var(--surface-base);
+  --sl-color-bg: var(--surface-base);
+  --sl-color-bg-nav: var(--surface-base);
+  --sl-color-bg-sidebar: var(--surface-base);
+  --sl-color-bg-inline-code: var(--surface-sunken);
+  --sl-color-bg-accent: var(--signal-text);
+  --sl-color-hairline-light: var(--border-subtle);
+  --sl-color-hairline: var(--border-subtle);
+  --sl-color-hairline-shade: var(--border-subtle);
+
+  --sl-shadow-sm: var(--shadow-sm);
+  --sl-shadow-md: var(--shadow-md);
+  --sl-shadow-lg: var(--shadow-lg);
+
+  /* The mark: Emerald on Ink, deep Emerald on Paper (design system, Logos). */
+  --sb-mark: #13b981;
+}
+
+:root[data-theme='light'] {
+  --sb-mark: #0b8f63;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Code blocks sit on surface-sunken (design system, Color). Starlight's
+   Expressive Code theme sets these per theme, so match its selectors. */
+:root .expressive-code,
+:root[data-theme='light'] .expressive-code:not([data-theme='dark']) {
+  --ec-frm-edBg: var(--surface-sunken);
+  --ec-frm-trmBg: var(--surface-sunken);
+  --ec-frm-edTabBarBg: var(--surface-raised);
+  --ec-frm-edActTabBg: var(--surface-sunken);
+  --ec-frm-trmTtbBg: var(--surface-raised);
+}
+
+/* The home page is wider than a docs page, as in the mockup. */
+:root:has(.sb-hero) {
+  --sl-content-width: 85rem;
+}
+
+/* The home page has no title panel (components/PageTitle.astro); its hero
+   meets the header. */
+main:has(.sb-hero) > .content-panel:first-child {
+  display: none;
+}
+main:has(.sb-hero) > .content-panel {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.sl-markdown-content :is(h1, h2, h3, h4, h5) {
+  letter-spacing: -0.015em;
+}
+
+.sl-markdown-content :not(pre) > code {
+  font-size: 0.9em;
+  border-radius: var(--radius-xs);
+}

@@ -1,0 +1,68 @@
+---
+// A link to a part of the docs, with an icon. Wrap tiles in Tiles.
+const icons = {
+  receipt: '<path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/>',
+  terminal: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/>',
+  list: '<path d="M4 6h16M4 12h16M4 18h10"/>',
+  chip: '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/>',
+  shield: '<path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/>',
+  people: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/>',
+} as const;
+
+interface Props {
+  href: string;
+  title: string;
+  icon: keyof typeof icons;
+}
+const { href, title, icon } = Astro.props;
+---
+
+<a class="tile" href={href}>
+  <span class="ic">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[icon]} />
+  </span>
+  <b>{title}</b>
+  <div class="text"><slot /></div>
+</a>
+
+<style>
+  .tile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .tile:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+    color: var(--text-primary);
+  }
+  .ic {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--signal-surface);
+    color: var(--signal-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  b {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+  }
+  .text {
+    color: var(--text-secondary);
+  }
+  .text :global(p) {
+    margin: 0;
+  }
+</style>
