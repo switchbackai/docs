@@ -1,0 +1,76 @@
+---
+// The band that points a coding agent at llms.txt.
+interface Props {
+  overline: string;
+  title: string;
+}
+const { overline, title } = Astro.props;
+---
+
+<section class="band not-content">
+  <div class="copy">
+    <span class="overline">{overline}</span>
+    <b>{title}</b>
+    <div class="text"><slot /></div>
+  </div>
+  <div class="code"><slot name="code" /></div>
+</section>
+
+<style>
+  .band {
+    margin: 56px 0 80px;
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    background: var(--surface-sunken);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+  }
+  .copy {
+    flex: 1 1 420px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .overline {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    /* text-muted is 4.48:1 on surface-sunken in the light theme. */
+    color: var(--text-secondary);
+  }
+  b {
+    font-size: 20px;
+    line-height: 27px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .text {
+    color: var(--text-secondary);
+  }
+  .text :global(p) {
+    margin: 0;
+  }
+  .code {
+    flex: 0 1 420px;
+    min-width: 0;
+  }
+  .code :global(.expressive-code) {
+    margin: 0;
+  }
+  @media (max-width: 50em) {
+    .band {
+      padding: 20px;
+      margin: 40px 0 56px;
+    }
+    .copy,
+    .code {
+      flex-basis: 100%;
+    }
+  }
+</style>

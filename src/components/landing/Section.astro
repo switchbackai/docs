@@ -1,0 +1,64 @@
+---
+// A section of the home page: an overline, a heading and a lead paragraph.
+interface Props {
+  id?: string;
+  overline?: string;
+  title: string;
+}
+const { id, overline, title } = Astro.props;
+---
+
+<section id={id} class="sb-section not-content">
+  <div class="head">
+    {overline && <span class="overline">{overline}</span>}
+    <h2>{title}</h2>
+    <slot name="lead" />
+  </div>
+  <slot />
+</section>
+
+<style>
+  .sb-section {
+    padding: 80px 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 640px;
+  }
+  .overline {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  h2 {
+    margin: 0;
+    font-size: 32px;
+    line-height: 38px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+  .head :global(p) {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 17px;
+    line-height: 27px;
+  }
+  @media (max-width: 50em) {
+    .sb-section {
+      padding-top: 56px;
+    }
+    h2 {
+      font-size: 24px;
+      line-height: 30px;
+    }
+  }
+</style>

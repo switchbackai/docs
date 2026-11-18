@@ -1,0 +1,39 @@
+---
+// A status chip. "success" is the Receipt's green; "neutral" a quiet stone dot.
+interface Props {
+  tone?: 'success' | 'neutral';
+}
+const { tone = 'neutral' } = Astro.props;
+---
+
+<span class:list={['pill', tone]}><span class="dot" aria-hidden="true"></span><slot /></span>
+
+<style>
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: var(--radius-pill);
+    padding: 5px 12px 5px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid var(--border-subtle);
+    background: var(--surface-raised);
+    color: var(--text-secondary);
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--stone);
+  }
+  .success {
+    color: var(--status-success);
+    background: var(--signal-surface);
+    border-color: transparent;
+  }
+  .success .dot {
+    background: var(--status-success);
+  }
+</style>

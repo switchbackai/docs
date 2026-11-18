@@ -1,0 +1,44 @@
+---
+// The quickstart as a route: numbered stops on one spine, then the
+// destination (design system, ChangeRoute). One column at phone width.
+---
+
+<ol class="route">
+  <span class="spine" aria-hidden="true"></span>
+  <slot />
+</ol>
+
+<style>
+  .route {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+  }
+  /* From the centre of the first node to the centre of the last; Emerald up
+     to the third stop, then the strong border to the destination. */
+  .spine {
+    position: absolute;
+    left: 17px;
+    right: calc((100% - 72px) / 4 - 17px);
+    top: 16px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--signal) 0%, var(--signal) 66.67%, var(--border-strong) 66.67%);
+  }
+  @media (max-width: 72rem) {
+    .route {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .spine {
+      display: none;
+    }
+  }
+  @media (max-width: 40rem) {
+    .route {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

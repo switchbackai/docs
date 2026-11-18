@@ -1,0 +1,111 @@
+---
+// The Ink hero band of the home page, with the contour texture behind it
+// (design system, The contour texture). Ink in both themes.
+interface Props {
+  overline: string;
+  title: string;
+}
+const { overline, title } = Astro.props;
+---
+
+<section class="sb-hero not-content">
+  <div class="inner">
+    <div class="copy">
+      <span class="overline">{overline}</span>
+      <h1 id="_top">{title}</h1>
+      <slot />
+    </div>
+    <div class="aside">
+      <slot name="aside" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .sb-hero {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    margin-top: 0;
+    background-color: #0f1f1c;
+    background-image: url('/textures/contour-texture.svg');
+    background-size: cover;
+    background-position: center right;
+    color: #f8f6ef;
+  }
+  .sb-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(15, 31, 28, 0.96) 0%, rgba(15, 31, 28, 0.82) 46%, rgba(15, 31, 28, 0.35) 100%);
+    pointer-events: none;
+  }
+  .inner {
+    position: relative;
+    z-index: 1;
+    max-width: 85rem;
+    margin: 0 auto;
+    padding: 88px 24px 96px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px;
+    align-items: center;
+  }
+  .copy {
+    flex: 1 1 520px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .aside {
+    flex: 1 1 440px;
+    min-width: 0;
+    max-width: 560px;
+  }
+  .overline {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #3ccf9c;
+  }
+  h1 {
+    margin: 0;
+    font-size: 56px;
+    line-height: 58px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #f8f6ef;
+    max-width: 640px;
+  }
+  .copy :global(p) {
+    margin: 0;
+    font-size: 17px;
+    line-height: 27px;
+    color: #b2bcb3;
+    max-width: 560px;
+  }
+  .copy :global(p.note) {
+    font-size: 13px;
+    line-height: 19px;
+    color: #8a948c;
+  }
+  @media (max-width: 50em) {
+    .inner {
+      padding: 56px 16px 64px;
+      gap: 40px;
+    }
+    h1 {
+      font-size: 40px;
+      line-height: 44px;
+      letter-spacing: -0.025em;
+    }
+    .copy,
+    .aside {
+      flex-basis: 100%;
+    }
+  }
+</style>

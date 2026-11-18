@@ -1,0 +1,53 @@
+---
+// The buttons of the hero: a primary signal button, then ghost buttons on Ink.
+interface Props {
+  primary: { label: string; href: string };
+  secondary?: { label: string; href: string };
+}
+const { primary, secondary } = Astro.props;
+---
+
+<div class="actions">
+  <a class="btn primary" href={primary.href}>
+    {primary.label}
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+  </a>
+  {secondary && <a class="btn ghost" href={secondary.href}>{secondary.label}</a>}
+</div>
+
+<style>
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    font-weight: 600;
+    border: 1px solid transparent;
+    text-decoration: none;
+  }
+  .primary {
+    background: var(--signal);
+    color: var(--text-on-signal);
+  }
+  .primary:hover {
+    background: #0f9e6e;
+    color: var(--text-on-signal);
+  }
+  .ghost {
+    color: #f8f6ef;
+    border-color: rgba(248, 246, 239, 0.28);
+  }
+  .ghost:hover {
+    color: #f8f6ef;
+    border-color: rgba(248, 246, 239, 0.6);
+  }
+</style>
