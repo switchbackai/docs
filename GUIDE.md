@@ -251,14 +251,22 @@ brew upgrade switchbak
 
 The watcher restarts itself on the new binary after an upgrade.
 
-To remove switchbak, boot out the launch agents first:
+To remove switchbak, uninstall it first, then remove the formula:
 
 ```bash
-switchbak teardown
+switchbak uninstall
 brew uninstall switchbak
 ```
 
-Teardown leaves `~/.config/switchbak`, the logs in `~/Library/Logs`, and the keychain item `switchbak`. Delete them yourself if you want nothing left. Teardown erases nothing on the server. Use `switchbak erase` for that before you remove the client.
+Uninstall boots out the launch agents, logs this Mac out at the server, and removes the keychain items `switchbak`, the logs in `~/Library/Logs` and `~/.config/switchbak`. Add `-keep-config` to keep `~/.config/switchbak` for a later install. Uninstall erases no session on the server. Use `switchbak erase` for that before you uninstall.
+
+If you ran `brew uninstall switchbak` first, launchd still tries to start the removed binary. Remove the launch agents with these commands, then delete the files above yourself:
+
+```bash
+launchctl bootout gui/$(id -u)/dev.switchbak.switchbak
+launchctl bootout gui/$(id -u)/dev.switchbak.switchbak.repos
+rm ~/Library/LaunchAgents/dev.switchbak.switchbak.plist ~/Library/LaunchAgents/dev.switchbak.switchbak.repos.plist
+```
 
 #### All commands
 
@@ -282,6 +290,7 @@ Teardown leaves `~/.config/switchbak`, the logs in `~/Library/Logs`, and the key
 | `switchbak pause`, `resume`      | Stops and starts the uploads.                                         |
 | `switchbak erase <path>`         | Erases the session of a file from the warehouse.                      |
 | `switchbak teardown`             | Boots out the launch agents and removes their files.                  |
+| `switchbak uninstall`            | Teardown, then logs out and removes the keychain items, logs, config. |
 
 ### 2.3 Members of your organization
 
