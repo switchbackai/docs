@@ -40,8 +40,8 @@ On a Mac with no browser, as over SSH, run `switchbak login --device`. It prints
 
 Login then makes your account, stores the credentials in your login keychain, and runs setup. Your account is in a Switchbak organization:
 
-- A new organization, with you as its admin, when your team has not connected GitHub to Switchbak.
-- The organization of your team, when your team connected GitHub and GitHub gives you access to that installation. The page asks "Join <team> as @login" before you approve. The admins of the team see each join.
+- The organization of your team, when your team connected its GitHub organization and you are a member of that GitHub organization. The page asks "Join <team> as @login" before you approve. The admins of the team see each join.
+- A new organization, with you as its admin, in all other cases. An outside collaborator of a GitHub organization gets a new organization, and does not join the team.
 
 The uploads start when setup ends. Uploads and Audits do not need the GitHub App.
 
@@ -119,11 +119,12 @@ switchbak connect
 
 Do this once for each GitHub organization or account whose pull requests get a Receipt. Pull requests get no Receipt until it is done. [Read an Audit](#read-an-audit) does not need it.
 
-1. Connect opens the Connect page of Switchbak in your browser
-2. Press Connect GitHub. Select which repositories the GitHub App may read
-3. Confirm on the page that follows
+1. Connect opens the Connect page of Switchbak in your browser. The page lists your GitHub account, and each GitHub organization that has the App and that you are a member of
+2. Press Install on your account, or on an organization. To install on an organization that is not in the list, press Install on another organization
+3. Select which repositories the GitHub App may read
+4. Confirm on the page that follows
 
-Connect then prints `✓ GitHub connected`.
+Connect then prints `✓ GitHub connected`. When your organization is already connected, connect prints the connected accounts and opens the page, so that you can install on your own account.
 
 A member of a GitHub organization who is not an owner sees "Waiting for an owner to approve". GitHub sent the install to an owner. Ask an owner to approve it, and then run `switchbak connect` again.
 
@@ -227,7 +228,7 @@ Erase does not reach the backups until they expire, or the Receipts already on G
 
 #### Log in again
 
-A login with GitHub lasts while GitHub gives you access to an installation that your organization connected. When that access ends, the uploads stop, and the watcher log says:
+A login with GitHub lasts while you are a member of a GitHub organization that your organization connected, or while the App is on your own GitHub account and your organization connected it. When that access ends, the uploads stop, and the watcher log says:
 
 ```text
 your access to <organization> ended: GitHub no longer lists one of its installations for your account. Ask an admin of <organization> for access, then run `switchbak login`
@@ -235,7 +236,7 @@ your access to <organization> ended: GitHub no longer lists one of its installat
 
 When the notifications are on, one banner says "Your access to <organization> ended".
 
-1. Ask an owner of the GitHub organization for access to the installation
+1. Ask an owner of the GitHub organization to make you a member
 2. Run `switchbak login`
 
 When GitHub no longer accepts your sign-in, the log tells you to run `switchbak login` again.
