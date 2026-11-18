@@ -1,4 +1,6 @@
-# Switchbak user guide
+---
+title: Switchbak user guide
+---
 
 Switchbak carries the sessions of your AI coding agents from your Mac to your organization's warehouse. Each pull request then gets a Receipt: the record of the sessions behind the change.
 
