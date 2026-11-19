@@ -20,22 +20,9 @@ const groups = [
   { label: 'Your data', directory: 'your-data' },
 ];
 
-// The pages at the root before the guide was split into the folders above
-// (EPD-254). Each one shows only while its file is there; delete this list
-// once the split has synced.
-const rootPages = [
-  { label: 'User guide', slug: 'guide', file: 'GUIDE.md' },
-  { label: 'Where your data goes', slug: 'data-notice', file: 'DATA-NOTICE.md' },
-];
-
-const sidebar = [
-  ...groups
-    .filter(({ directory }) => existsSync(new URL(directory, docs)))
-    .map(({ label, directory }) => ({ label, items: [{ autogenerate: { directory } }] })),
-  ...rootPages
-    .filter(({ file }) => existsSync(new URL(file, docs)))
-    .map(({ label, slug }) => ({ label, slug })),
-];
+const sidebar = groups
+  .filter(({ directory }) => existsSync(new URL(directory, docs)))
+  .map(({ label, directory }) => ({ label, items: [{ autogenerate: { directory } }] }));
 
 export default defineConfig({
   site: 'https://docs.switchbak.dev',
