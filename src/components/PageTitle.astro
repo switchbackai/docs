@@ -1,8 +1,13 @@
 ---
 // The home page draws its own h1 in its hero (components/landing/Hero.astro).
+// Each Markdown page gets its actions above the title (plugins/pages.mjs serves
+// its Markdown copy at its route with .md).
 import Default from '@astrojs/starlight/components/PageTitle.astro';
+import PageActions from './PageActions.astro';
 
-const { id } = Astro.locals.starlightRoute;
+const { id, entry } = Astro.locals.starlightRoute;
+const markdown = entry.filePath?.endsWith('.md') ? `/${id}.md` : undefined;
 ---
 
+{markdown && <PageActions markdown={markdown} agent={entry.data.agent} />}
 {id !== '' && <Default />}
