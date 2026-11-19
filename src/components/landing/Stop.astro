@@ -26,10 +26,14 @@ const { n, title, destination = false } = Astro.props;
 </li>
 
 <style>
+  /* Node, text and body each share a row of the Route, so the commands line
+     up across the stops whatever the length of their text. */
   .stop {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    row-gap: 14px;
+    align-items: start;
     min-width: 0;
   }
   .node {
@@ -73,6 +77,15 @@ const { n, title, destination = false } = Astro.props;
   }
   .stop :global(.expressive-code) {
     margin: 0;
+    align-self: stretch;
+  }
+  .stop :global(.expressive-code .frame),
+  .stop :global(.expressive-code pre) {
+    height: 100%;
+  }
+  /* Break a command at a space, never inside a word such as the tap path. */
+  .stop :global(pre.wrap .ec-line .code) {
+    overflow-wrap: normal;
   }
   /* A row of Pills in a stop's body, as on the destination: wraps on a narrow screen. */
   .stop :global(.pills) {
