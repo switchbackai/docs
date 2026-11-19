@@ -22,7 +22,7 @@ import AgentBand from '~/components/landing/AgentBand.astro';
   tools do not back, and what it touched that it did not explain.
 
   <Actions
-    primary={{ label: 'Start the quickstart', href: '#quickstart' }}
+    primary={{ label: 'Get started', href: '#quickstart' }}
     secondary={{ label: 'Read a Receipt', href: '/guide/#21-the-receipt-on-a-pull-request' }}
   />
   <p class="note">You need a Mac with Apple silicon, Homebrew and a GitHub account.</p>
@@ -72,8 +72,9 @@ import AgentBand from '~/components/landing/AgentBand.astro';
     </Stop>
     <Stop destination title="Push">
       <p slot="text">The next push to a pull request gets its Receipt.</p>
-      <div>
-        <Pill tone="success">🧾 Receipt</Pill> <Pill>check run</Pill>
+      <div class="pills">
+        <Pill tone="success">🧾 Receipt</Pill>
+        <Pill>check run</Pill>
       </div>
     </Stop>
   </Route>
