@@ -8,7 +8,33 @@
 - `switchbak status` prints the state of an installation. Without the GitHub App it prints `github    Receipts on pull requests are off`; uploads and Audits still run. `switchbak audit -json <path>` prints the Audit of a session as JSON.
 - Each member of an organization can read every session of it. A GitHub member is a person with access to an installation of the GitHub App that the organization connected. When the access ends, run `switchbak login` after access returns. An admin removes a member on the members page.
 
-## Docs
+## Get started
 
-- [User guide](https://docs.switchbak.dev/guide/): install, log in with GitHub, connect the GitHub App, join a team, read a Receipt, log in again, manage members, and each command of the CLI.
+- [Overview](https://docs.switchbak.dev/get-started/overview/): what Switchbak does, and where each part of these docs is.
+- [Quickstart](https://docs.switchbak.dev/get-started/quickstart/): install, log in with GitHub and connect GitHub, for a Receipt on the next push.
+
+## Set up
+
+- [Install the client](https://docs.switchbak.dev/set-up/install/): what you need, and the Homebrew install.
+- [Log in](https://docs.switchbak.dev/set-up/log-in/): log in with GitHub or with a device code, join the organization of a team, and log in again when access ends.
+- [Choose agents and roots](https://docs.switchbak.dev/set-up/agents-and-roots/): the setup questions, `switchbak agents`, `switchbak roots`, and `switchbak status`.
+- [Connect GitHub](https://docs.switchbak.dev/set-up/connect-github/): install the GitHub App, so that pull requests get a Receipt.
+- [Pause, upgrade and remove](https://docs.switchbak.dev/set-up/upgrade-and-remove/): pause the uploads, upgrade the client, and uninstall it.
+
+## Use switchbak
+
+- [The Receipt on a pull request](https://docs.switchbak.dev/use-switchbak/the-receipt/): the intent, the three columns, the check run and the scope marks.
+- [Read an Audit](https://docs.switchbak.dev/use-switchbak/read-an-audit/): the Verdict and the Findings of a session, with `switchbak audit <path>`.
+- [Follow your Audits](https://docs.switchbak.dev/use-switchbak/follow-your-audits/): the newest Audit of a checkout or a branch, and the Audit notifications.
+- [Erase a session](https://docs.switchbak.dev/use-switchbak/erase-a-session/): `switchbak erase <path>`, and what it does not reach.
+- [Members of your organization](https://docs.switchbak.dev/use-switchbak/members/): see the members of an organization, and remove a member.
+
+## Reference
+
+- [All commands](https://docs.switchbak.dev/reference/all-commands/): each command of the CLI, and what it does.
+- [Supported agents](https://docs.switchbak.dev/reference/supported-agents/): the agents that setup offers, and where each keeps its session files.
+
+## Your data
+
 - [Where your data goes](https://docs.switchbak.dev/data-notice/): what the client reads, what the warehouse masks, where each copy of a session is held, who can read it, and what erase removes.
+- [The beta](https://docs.switchbak.dev/your-data/the-beta/): the terms that apply during the beta.

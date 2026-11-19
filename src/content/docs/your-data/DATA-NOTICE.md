@@ -1,6 +1,9 @@
 ---
 title: Where your data goes
 description: What the Switchbak client reads and sends, what the warehouse masks, where each copy of a session is held, and what erase removes.
+slug: data-notice
+sidebar:
+  order: 1
 ---
 
 Switchbak sends the session files of your AI coding agents to your organization's warehouse. This notice names what the client reads, what it sends, what the warehouse masks, where each copy is held, and what erase removes. It describes what the software does. The privacy policy and the terms are separate documents.
@@ -8,14 +11,6 @@ Switchbak sends the session files of your AI coding agents to your organization'
 1. [On your Mac](#1-on-your-mac): what the client reads, sends and keeps.
 2. [Where a session goes](#2-where-a-session-goes): the warehouse, what it masks, the Audit Service, GitHub and the backups.
 3. [Erase](#3-erase): what erase removes, and what stays.
-
-## The beta
-
-Switchbak is in beta. During the beta, these terms apply:
-
-- The service runs in an environment that is not stable. It can stop or change without notice.
-- Switchbak does not guarantee the durability of your data. Do not use the warehouse as the only copy of a session.
-- At the end of the beta, Switchbak deletes the data of your organization from the warehouse. The backups that hold it expire 30 days later. The other copies that erase does not reach stay, as [What erase removes, and what stays](#what-erase-removes-and-what-stays) names.
 
 ## 1. On your Mac
 
