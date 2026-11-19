@@ -74,4 +74,10 @@ const { n, title, destination = false } = Astro.props;
   .stop :global(.expressive-code) {
     margin: 0;
   }
+  /* A row of Pills in a stop's body, as on the destination: wraps on a narrow screen. */
+  .stop :global(.pills) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 </style>
