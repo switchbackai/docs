@@ -91,7 +91,7 @@ Masking does not find every secret, so keep secrets out of your sessions.
 
 ### The Audit Service
 
-The warehouse sends each upload to the Audit Service, which reads the session and answers with a verdict and findings. A session that ended more than one day before you first logged in is stored and not sent, until you run `switchbak audit <path>` for it.
+The warehouse sends each upload to the Audit Service, which reads the session and answers with a verdict and findings. A session that ended more than one day before you first logged in is stored and not sent, until you run `switchbak audit <path>` for it. The exception is up to five of your newest sessions that ended in the 14 days before your first login: the warehouse sends them, so that your workspace shows Audits on the first day.
 
 ### The GitHub App
 
