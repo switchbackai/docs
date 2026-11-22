@@ -12,10 +12,9 @@ sidebar:
 | `switchbak logout`               | Logs this Mac out, and removes the keychain items. Keeps the config.  |
 | `switchbak version`              | Prints the release you installed.                                     |
 | `switchbak connect`              | Connects GitHub, so that pull requests get a Receipt.                 |
-| `switchbak setup`                | Writes the watch list and the roots, and loads the launch agents.     |
+| `switchbak setup`                | Selects each installed agent and common root, and loads the agents.   |
 | `switchbak setup -root <dir>`    | Replaces the roots. Repeat `-root` for each directory.                |
-| `switchbak agents`               | Chooses the agents and projects to watch, and restarts the watcher.   |
-| `switchbak roots`                | Chooses the directories that hold your checkouts.                     |
+| `switchbak configure`            | Chooses the agents, projects and checkout directories, and restarts.  |
 | `switchbak status`               | Prints installed, authenticated, connected, then the details.         |
 | `switchbak audit <path>`         | Prints the Verdict and the Findings of a session, and waits for them. |
 | `switchbak audit -latest`        | The same, for your newest session that has an Audit.                  |

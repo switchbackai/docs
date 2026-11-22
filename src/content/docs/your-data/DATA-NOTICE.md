@@ -64,7 +64,7 @@ Within your organization, each member can read every session of the organization
 
 The admins of your organization see each join on the members page. An admin can remove a member, and GitHub access does not add that person again. Choose who can access the installation with that in mind.
 
-A person who joins a team from an organization of their own moves into the organization of the team. Their sessions of the last 24 hours go to the warehouse of the team, and each member of the team can read them. The move starts only when the person presses Approve. Their earlier organization is retired. Its other sessions stay in it, and the team cannot read them. Switchbak erases it 7 days after the move. Until then, its Receipt links on pull requests still open. The backups that hold it expire 30 days after the erase.
+A person who joins a team from an organization of their own moves into the organization of the team. Their sessions of the last 24 hours go to the warehouse of the team, and each member of the team can read them. The move starts only when the person presses Approve. Their earlier organization is retired. Its other sessions stay in it, and the team cannot read them. Switchbak erases it 7 days after the move. Its Receipt links on pull requests stop opening at the move, because the earlier organization has no members. The backups that hold it expire 30 days after the erase.
 
 ### Secrets
 
@@ -95,7 +95,7 @@ The warehouse sends each upload to the Audit Service, which reads the session an
 
 ### The GitHub App
 
-After `switchbak connect`, the Switchbak App reads the pull requests of the repositories your organization chose: their commits, changed files, reviews, head and base. It reads no repository contents, issues or members. For each pull request, it writes one check run and one comment: the Receipt, which quotes the sessions behind the change, with citations. Everyone who can see the pull request can see the Receipt. The check links to a receipt page on `sep.switchbak.dev` that opens without a login for anyone who has the link.
+After `switchbak connect`, the Switchbak App reads the pull requests of the repositories your organization chose: their commits, changed files, reviews, head and base. It reads no repository contents, issues or members. For each pull request, it writes one check run and one comment: the Receipt, which quotes the sessions behind the change, with citations. Everyone who can see the pull request can see the Receipt. The check and the comment link to the Receipt on `app.switchbak.dev`. Only a signed-in member of your organization can open that page, on a public repository too.
 
 ### Backups
 

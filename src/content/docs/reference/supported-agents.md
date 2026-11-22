@@ -15,4 +15,4 @@ sidebar:
 | Gemini CLI  | `~/.gemini/tmp/`, `~/.gemini/sessions/` |
 | OpenCode    | `~/.local/share/opencode/storage/`      |
 
-Setup marks an agent "not found" when its session files are not on your Mac. Run `switchbak agents` after you install another agent.
+Setup selects each agent whose session files are on your Mac. Run `switchbak configure` after you install another agent.

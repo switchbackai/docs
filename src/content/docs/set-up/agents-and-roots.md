@@ -5,10 +5,26 @@ sidebar:
   order: 3
 ---
 
-Setup asks two questions.
+Setup asks no questions. It selects two lists and prints them:
 
-- Which agents to watch. Setup shows a checklist with one row for each [supported agent](../reference/supported-agents.md), with the count and size of its session files. Nothing is selected until you select it. A session of an agent that you did not select never leaves your Mac. The warehouse masks the secrets that it finds on arrival.
-- Which directories hold your git checkouts. Setup shows each candidate with the count of checkouts below it. A repository outside these directories is minted only when a session names a clone of it. Otherwise its pull requests get no Receipt.
+- The agents to watch: each [supported agent](../reference/supported-agents.md) that is on your Mac, with all its projects. A session of an agent that is not selected never leaves your Mac. The warehouse masks the secrets that it finds on arrival.
+- The directories that hold your git checkouts: each of `~/src`, `~/code`, `~/work`, `~/Developer`, `~/Documents/GitHub` and `~/projects` that exists. A repository outside these directories is minted only when a session names a clone of it. Otherwise its pull requests get no Receipt.
+
+```text
+agents    Claude Code, Codex
+roots     ~/src, ~/Documents/GitHub
+Run `switchbak configure` to change them.
+```
+
+When setup finds no agent or no directory, it shows the checklist for that list.
+
+## Change the agents and roots
+
+```bash
+switchbak configure
+```
+
+Configure shows one checklist for the agents, then one for the directories. Each starts from your current choices, with the count and size of the session files of each agent and the count of checkouts below each directory.
 
 | Key     | What it does                                  |
 | ------- | --------------------------------------------- |
@@ -20,18 +36,11 @@ Setup asks two questions.
 | Enter   | Confirm. On "add a path", type a path to add. |
 | Ctrl-C  | Stop. Setup changes nothing.                  |
 
-To keep one project on your Mac, select its agent, press →, and clear the project. Setup writes an exclusion for it. Codex, Gemini CLI and OpenCode do not keep their sessions by project, so they have no project rows.
+To keep one project on your Mac, select its agent, press →, and clear the project. Configure writes an exclusion for it. Codex, Gemini CLI and OpenCode do not keep their sessions by project, so they have no project rows.
 
-To change your choices later:
+Configure then restarts the two launch agents. When you clear an agent, the sessions that it sent stay in the warehouse. `switchbak erase <path>` erases one.
 
-```bash
-switchbak agents    # the agents and projects, then restart the watcher
-switchbak roots     # the directories of your checkouts
-```
-
-Each starts from your current choices. When you clear an agent, the sessions that it sent stay in the warehouse. `switchbak erase <path>` erases one.
-
-Setup then loads two launch agents and waits for the first upload. A fresh install has no session until an agent runs, so no upload yet is not a failure.
+Setup loads two launch agents and waits for the first upload. A fresh install has no session until an agent runs, so no upload yet is not a failure.
 
 ## Check the installation
 

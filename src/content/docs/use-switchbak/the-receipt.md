@@ -58,4 +58,7 @@ The check opens with the same intent and table, then these sections:
 
 The check adds a "Why is this here?" note to each changed file. Its title
 names the head commit that the Receipt describes and the sessions. "Open in
-Switchbak" opens the receipt on `sep.switchbak.dev`.
+Switchbak" and the check's Details open the Receipt on `app.switchbak.dev`.
+Only a member of your organization can open it. A person who is not signed in
+signs in first and then sees the Receipt. A person who is not a member sees no
+Receipt.
