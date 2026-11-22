@@ -46,3 +46,17 @@ When the notifications are on, one banner says "Your access to <organization> en
 2. Run `switchbak login`
 
 When GitHub no longer accepts your sign-in, the log tells you to run `switchbak login` again.
+
+## Log out
+
+```bash
+switchbak logout
+```
+
+Logout logs this Mac out at the server, and removes the keychain items `switchbak`. It keeps `~/.config/switchbak` and the launch agents. The watcher uploads nothing until you log in again. Logout ends with the command to log in again:
+
+```text
+switchbak login
+```
+
+If the server does not answer, logout prints a warning and removes the keychain items. The server then keeps the login until it expires. To remove switchbak from this Mac, see [Upgrade and remove](upgrade-and-remove.md).

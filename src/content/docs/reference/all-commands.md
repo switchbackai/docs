@@ -9,13 +9,14 @@ sidebar:
 | -------------------------------- | --------------------------------------------------------------------- |
 | `switchbak login`                | Signs you in with GitHub, stores the credentials, and runs setup.     |
 | `switchbak login --device`       | The same, with a code that you approve on another device.             |
+| `switchbak logout`               | Logs this Mac out, and removes the keychain items. Keeps the config.  |
 | `switchbak version`              | Prints the release you installed.                                     |
 | `switchbak connect`              | Connects GitHub, so that pull requests get a Receipt.                 |
 | `switchbak setup`                | Writes the watch list and the roots, and loads the launch agents.     |
 | `switchbak setup -root <dir>`    | Replaces the roots. Repeat `-root` for each directory.                |
 | `switchbak agents`               | Chooses the agents and projects to watch, and restarts the watcher.   |
 | `switchbak roots`                | Chooses the directories that hold your checkouts.                     |
-| `switchbak status`               | Prints the installation, the uploads, the Audits and GitHub.          |
+| `switchbak status`               | Prints installed, authenticated, connected, then the details.         |
 | `switchbak audit <path>`         | Prints the Verdict and the Findings of a session, and waits for them. |
 | `switchbak audit -latest`        | The same, for your newest session that has an Audit.                  |
 | `switchbak audit -repo <dir>`    | The same, for the newest session of a checkout.                       |

@@ -41,7 +41,19 @@ Check the installation at any time:
 switchbak status
 ```
 
-It prints the endpoint, the installation, the two agents, the watched paths, the bytes the server holds, the `audit` line of your newest session, and the GitHub accounts connected to your organization. Before you [connect GitHub](connect-github.md), status prints:
+The first line says if this Mac is ready:
+
+```text
+ready     installed ✓  authenticated ✓  connected ✓
+```
+
+- `installed`: launchd holds the two launch agents.
+- `authenticated`: the server accepts the credentials in your keychain.
+- `connected`: the server holds a session from this Mac.
+
+Before your first session, the line ends with `connected, waiting for first session — run an agent`. That is not a failure. Run Claude Code or another [supported agent](../reference/supported-agents.md), then run status again. When a step fails, the next line names the command that fixes it, for example ``run `switchbak login` to sign in``.
+
+Then status prints the endpoint, the installation, the two agents, the watched paths, the bytes the server holds, the `audit` line of your newest session, and the GitHub accounts connected to your organization. Before you [connect GitHub](connect-github.md), status prints:
 
 ```text
 github    Receipts on pull requests are off
