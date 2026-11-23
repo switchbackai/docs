@@ -34,6 +34,20 @@ When your organization is already connected, connect prints the connected accoun
 
 A member of a GitHub organization who is not an owner sees "Waiting for an owner to approve". GitHub sent the install to an owner. Ask an owner to approve it, and then run `switchbak connect` again.
 
+## Connect from the web app
+
+An admin can also connect GitHub on [app.switchbak.dev](https://app.switchbak.dev):
+
+1. Open the Overview. In the Get started checklist, press Install GitHub App
+2. In Connect GitHub, press Install next to your organization. If the organization is not in the list, type its name in Organization on GitHub
+3. On GitHub, select the repositories and press Install & Authorize
+
+![The Connect GitHub step on the Overview: the permissions of the App, the organizations with Install, and the field Organization on GitHub](connect-github/step.png)
+
+Settings, Integrations then shows the GitHub App as installed, with its repositories. Press Manage on GitHub to add a repository.
+
+![The Integrations tab of Settings: the GitHub App is installed on acme with two repositories](connect-github/integrations.png)
+
 The Receipt check and the Receipt comment appear on the next push to a pull request in a chosen repository.
 
 When the GitHub account is already connected to the Switchbak organization of your team, connect offers to join that organization.

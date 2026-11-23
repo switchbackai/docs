@@ -62,9 +62,9 @@ Check the installation:
 switchbak status
 ```
 
-The first line is `ready     installed ✓  authenticated ✓  connected ✓`. The Setup page of [app.switchbak.dev](https://app.switchbak.dev) shows the same steps.
+The first line is `ready     installed ✓  authenticated ✓  connected ✓`. The Get started checklist on the Overview of [app.switchbak.dev](https://app.switchbak.dev) shows the same steps.
 
-![The setup checklist on app.switchbak.dev, with each step done](quickstart/setup.png)
+![The Get started checklist on the Overview of app.switchbak.dev: the CLI and GitHub are done, and Invite your team is optional](quickstart/setup.png)
 
 ## 4. Make a change with your agent
 
@@ -99,7 +99,7 @@ The comment quotes the intent of the change. Its table shows the false claims, t
 
 Press "Open in Switchbak" for the full Receipt on app.switchbak.dev. Only a member of your workspace can open it.
 
-![The Receipt page on app.switchbak.dev](quickstart/receipt.png)
+![The Receipt page on app.switchbak.dev: the intent, the findings, the checks to settle and the provenance of the session](quickstart/receipt.png)
 
 See [The Receipt on a pull request](../use-switchbak/the-receipt.md).
 

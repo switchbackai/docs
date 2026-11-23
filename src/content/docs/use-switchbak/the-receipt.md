@@ -62,3 +62,5 @@ Switchbak" and the check's Details open the Receipt on `app.switchbak.dev`.
 Only a member of your organization can open it. A person who is not signed in
 signs in first and then sees the Receipt. A person who is not a member sees no
 Receipt.
+
+![The Receipt page on app.switchbak.dev: the intent, the findings, the checks to settle and the provenance of the session](../get-started/quickstart/receipt.png)
