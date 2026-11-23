@@ -23,11 +23,4 @@ export const groups = [
   },
   { label: 'Security', directory: 'security' },
   { label: 'Resources', directory: 'resources' },
-  // The groups before EPD-407. Each shows until the release that moves its
-  // pages deletes its folder.
-  { label: 'Get started', directory: 'get-started' },
-  { label: 'Set up', directory: 'set-up' },
-  { label: 'Use switchbak', directory: 'use-switchbak' },
-  { label: 'Reference', directory: 'reference' },
-  { label: 'Your data', directory: 'your-data' },
 ];

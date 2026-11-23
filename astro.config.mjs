@@ -16,8 +16,28 @@ const sidebar = groups
   .filter(({ directory }) => existsSync(new URL(directory, docs)))
   .map(({ label, directory, items }) => ({ label, items: items ?? [{ autogenerate: { directory } }] }));
 
+// The old route of each page that moved (EPD-407, EPD-408), to its new route.
+const moved = {
+  '/get-started/overview/': '/start-here/overview/',
+  '/get-started/quickstart/': '/start-here/get-started/',
+  '/use-switchbak/the-receipt/': '/guides/receipts/',
+  '/set-up/install/': '/guides/cli/install/',
+  '/set-up/log-in/': '/guides/cli/log-in/',
+  '/set-up/agents-and-roots/': '/guides/cli/agents-and-roots/',
+  '/use-switchbak/read-an-audit/': '/guides/cli/read-an-audit/',
+  '/use-switchbak/follow-your-audits/': '/guides/cli/follow-your-audits/',
+  '/use-switchbak/erase-a-session/': '/guides/cli/erase-a-session/',
+  '/set-up/upgrade-and-remove/': '/guides/cli/upgrade-and-remove/',
+  '/reference/all-commands/': '/guides/cli/all-commands/',
+  '/reference/supported-agents/': '/guides/cli/supported-agents/',
+  '/use-switchbak/members/': '/admin/invite-teammates/',
+  '/set-up/connect-github/': '/admin/integrations/github/',
+  '/your-data/the-beta/': '/resources/faq/',
+};
+
 export default defineConfig({
   site: 'https://docs.switchbak.dev',
+  redirects: moved,
   markdown: {
     remarkPlugins: [remarkMdLinks],
   },
