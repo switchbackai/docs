@@ -63,15 +63,15 @@ the login was refused: No Switchbak workspace has <email>. Create your workspace
 
 A login with Google does not join the workspace of your team through GitHub. To join through your GitHub organization, log in with GitHub, or [link GitHub](#link-your-accounts) to your account.
 
-When your Google email is the email of an account that signs in with GitHub, the page says "An account with this email signs in with GitHub". Run `switchbak login` again and choose Continue with GitHub. To sign in with Google later, link it on the Devices page.
+When your Google email is the email of an account that signs in with GitHub, the page says "An account with this email signs in with GitHub". Run `switchbak login` again and choose Continue with GitHub. To sign in with Google later, link it on the Profile page.
 
 ## Link your accounts
 
 You can sign in to one account with both GitHub and Google. Link the second one in the web app:
 
 1. Sign in at [app.switchbak.dev](https://app.switchbak.dev)
-2. Open Devices in the sidebar. Linked accounts lists GitHub and Google
-3. Press Link GitHub account or Link Google account, and sign in with it
+2. Open the menu of your avatar and choose Profile. Accounts lists the accounts that you sign in with
+3. Under Add an account, press Link a GitHub account or Link a Google account, and sign in with it
 
 The page then says "Your Google account is linked. You can sign in with it."
 
