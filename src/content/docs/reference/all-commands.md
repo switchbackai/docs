@@ -16,6 +16,7 @@ sidebar:
 | `switchbak setup -root <dir>`    | Replaces the roots. Repeat `-root` for each directory.                      |
 | `switchbak configure`            | Chooses the agents, projects and checkout directories, and restarts.        |
 | `switchbak status`               | Prints installed, authenticated, connected, then the details.               |
+| `switchbak status -json`         | The state as JSON, for a coding agent. Exits non-zero unless it is ready.   |
 | `switchbak audit <path>`         | Prints the Verdict and the Findings of a session, and waits for them.       |
 | `switchbak audit -latest`        | The same, for your newest session that has an Audit.                        |
 | `switchbak audit -repo <dir>`    | The same, for the newest session of a checkout.                             |
