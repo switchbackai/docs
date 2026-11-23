@@ -14,14 +14,15 @@ agent: |
   6. Run `switchbak next -json` and do the step it gives. When `by` is `agent`, run its `command`. When `by` is `person`, give me its `text` and wait until I say it is done. When `by` is `admin`, give me its `text` and stop. Repeat until `step` is `done`, or until the step only waits for a session or a pull request.
   7. Run `switchbak status -json`. Tell me what is ready and what is still to do.
 sidebar:
-  order: 4
+  label: "GitHub"
+  order: 1
 ---
 
 ```bash
 switchbak connect
 ```
 
-Do this once for each GitHub organization or account whose pull requests get a Receipt. Pull requests get no Receipt until it is done. [Read an Audit](../use-switchbak/read-an-audit.md) does not need it.
+Do this once for each GitHub organization or account whose pull requests get a Receipt. Pull requests get no Receipt until it is done. [Read an Audit](../../guides/cli/read-an-audit.md) does not need it.
 
 The type of your workspace decides what you can connect:
 
@@ -56,11 +57,11 @@ An admin can also connect GitHub on [app.switchbak.dev](https://app.switchbak.de
 2. In Connect GitHub, press Install next to your organization. If the organization is not in the list, type its name in Organization on GitHub
 3. On GitHub, select the repositories and press Install & Authorize
 
-![The Connect GitHub step on the Overview: the permissions of the App, the organizations with Install, and the field Organization on GitHub](connect-github/step.png)
+![The Connect GitHub step on the Overview: the permissions of the App, the organizations with Install, and the field Organization on GitHub](github/step.png)
 
 Settings, Integrations then shows the GitHub App as installed, with its repositories. Press Manage on GitHub to add a repository.
 
-![The Integrations tab of Settings: the GitHub App is installed on acme with two repositories](connect-github/integrations.png)
+![The Integrations tab of Settings: the GitHub App is installed on acme with two repositories](github/integrations.png)
 
 The Receipt check and the Receipt comment appear on the next push to a pull request in a chosen repository.
 

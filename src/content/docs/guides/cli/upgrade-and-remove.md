@@ -2,7 +2,7 @@
 title: Pause, upgrade and remove
 description: Pause the uploads, upgrade the client, and remove it from your Mac.
 sidebar:
-  order: 5
+  order: 7
 ---
 
 ```bash

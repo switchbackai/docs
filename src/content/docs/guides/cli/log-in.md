@@ -66,7 +66,7 @@ When your workspace has no GitHub installation, login ends with this question:
 Connect GitHub now? [Y/n]
 ```
 
-Press Return to [connect GitHub](connect-github.md) now. A Personal workspace connects your own GitHub account, and a Team workspace connects your GitHub organization. When your workspace already has an installation, login prints `GitHub connected ✓` and asks nothing.
+Press Return to [connect GitHub](../../admin/integrations/github.md) now. A Personal workspace connects your own GitHub account, and a Team workspace connects your GitHub organization. When your workspace already has an installation, login prints `GitHub connected ✓` and asks nothing.
 
 ## Link your accounts
 

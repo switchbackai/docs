@@ -3,6 +3,7 @@ title: Where your data goes
 description: What the Switchbak client reads and sends, what the warehouse masks, where each copy of a session is held, and what erase removes.
 slug: data-notice
 sidebar:
+  label: "Security & Privacy"
   order: 1
 ---
 

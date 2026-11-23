@@ -2,7 +2,7 @@
 title: Read an Audit
 description: Print the Verdict and the Findings of a session in your terminal.
 sidebar:
-  order: 2
+  order: 4
 ---
 
 When the first session reaches the server, setup ends with this line, and

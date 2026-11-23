@@ -2,7 +2,7 @@
 title: All commands
 description: Each command of the Switchbak client, and what it does.
 sidebar:
-  order: 1
+  order: 8
 ---
 
 | Command                          | What it does                                                                |

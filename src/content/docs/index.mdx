@@ -8,24 +8,20 @@ import Hero from '~/components/landing/Hero.astro';
 import Actions from '~/components/landing/Actions.astro';
 import ReceiptCard from '~/components/landing/ReceiptCard.astro';
 import Section from '~/components/landing/Section.astro';
-import Route from '~/components/landing/Route.astro';
-import Stop from '~/components/landing/Stop.astro';
-import Pill from '~/components/landing/Pill.astro';
 import Tiles from '~/components/landing/Tiles.astro';
 import Tile from '~/components/landing/Tile.astro';
 import AgentBand from '~/components/landing/AgentBand.astro';
 
-<Hero overline="Documentation · Beta" title="Change has a route.">
+<Hero overline="Documentation" title="Change has a route.">
   See what your agent did, and why, on every pull request. Switchbak carries
   the sessions of your AI coding agents to your organization. Each pull
   request then gets a Receipt: the intent of the change, the claims its own
   tools do not back, and what it touched that it did not explain.
 
   <Actions
-    primary={{ label: 'Get started', href: '#quickstart' }}
-    secondary={{ label: 'Read a Receipt', href: '/use-switchbak/the-receipt/' }}
+    primary={{ label: 'Get started', href: '/start-here/get-started/' }}
+    secondary={{ label: 'Read a Receipt', href: '/guides/receipts/' }}
   />
-  <p class="note">You need a Mac with Apple silicon, Homebrew and a GitHub account.</p>
   <ReceiptCard
     slot="aside"
     label="A Receipt comment on a pull request"
@@ -43,61 +39,24 @@ import AgentBand from '~/components/landing/AgentBand.astro';
   />
 </Hero>
 
-<Section id="quickstart" overline="Quickstart" title="Three commands to your first Receipt">
-  <div slot="lead">
-    Install the client, log in with GitHub, and connect the GitHub App. Uploads
-    start when login ends. The Receipt appears on your next push.
-  </div>
-  <Route>
-    <Stop n={1} title="Install">
-      <p slot="text">From the Homebrew tap.</p>
-
-      ```sh frame="none" wrap
-      brew install switchbackai/tap/switchbak
-      ```
-    </Stop>
-    <Stop n={2} title="Log in">
-      <p slot="text">Sign in with GitHub. Setup watches each installed agent.</p>
-
-      ```sh frame="none" wrap
-      switchbak login
-      ```
-    </Stop>
-    <Stop n={3} title="Connect GitHub">
-      <p slot="text">Install the App on your account or organization.</p>
-
-      ```sh frame="none" wrap
-      switchbak connect
-      ```
-    </Stop>
-    <Stop destination title="Push">
-      <p slot="text">The next push to a pull request gets its Receipt.</p>
-      <div class="pills">
-        <Pill tone="success">🧾 Receipt</Pill>
-        <Pill>check run</Pill>
-      </div>
-    </Stop>
-  </Route>
-</Section>
-
 <Section title="Find your way">
   <Tiles>
-    <Tile icon="receipt" title="The Receipt" href="/use-switchbak/the-receipt/">
+    <Tile icon="receipt" title="The Receipt" href="/guides/receipts/">
       Read the intent, false claims, blast radius and scope of a pull request.
     </Tile>
-    <Tile icon="terminal" title="Read an Audit" href="/use-switchbak/read-an-audit/">
+    <Tile icon="terminal" title="Read an Audit" href="/guides/cli/read-an-audit/">
       See the Verdict and Findings of a session in your terminal. No GitHub needed.
     </Tile>
-    <Tile icon="list" title="CLI reference" href="/reference/all-commands/">
+    <Tile icon="list" title="CLI reference" href="/guides/cli/all-commands/">
       Every switchbak command, from login to teardown.
     </Tile>
-    <Tile icon="chip" title="Supported agents" href="/reference/supported-agents/">
+    <Tile icon="chip" title="Supported agents" href="/guides/cli/supported-agents/">
       Claude Code, Codex, Cursor, Gemini CLI and OpenCode.
     </Tile>
     <Tile icon="shield" title="Where your data goes" href="/data-notice/">
       What leaves your Mac, where it is held, and what erase removes.
     </Tile>
-    <Tile icon="people" title="Your organization" href="/use-switchbak/members/">
+    <Tile icon="people" title="Your organization" href="/admin/invite-teammates/">
       Join your team, see its members, and remove a member.
     </Tile>
   </Tiles>

@@ -2,7 +2,7 @@
 title: The Receipt on a pull request
 description: Read the intent, false claims, blast radius and scope that the Receipt records for a pull request.
 sidebar:
-  label: The Receipt
+  label: "Receipts"
   order: 1
 ---
 
@@ -63,4 +63,4 @@ Only a member of your organization can open it. A person who is not signed in
 signs in first and then sees the Receipt. A person who is not a member sees no
 Receipt.
 
-![The Receipt page on app.switchbak.dev: the intent, the findings, the checks to settle and the provenance of the session](../get-started/quickstart/receipt.png)
+![The Receipt page on app.switchbak.dev: the intent, the findings, the checks to settle and the provenance of the session](../start-here/get-started/receipt.png)

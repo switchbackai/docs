@@ -2,10 +2,10 @@
 title: Supported agents
 description: The agents whose sessions Switchbak sends, and where each keeps its session files.
 sidebar:
-  order: 2
+  order: 9
 ---
 
-[Setup](../set-up/agents-and-roots.md) offers the session files of these agents. The warehouse audits the sessions of each, and a Receipt cites them.
+[Setup](agents-and-roots.md) offers the session files of these agents. The warehouse audits the sessions of each, and a Receipt cites them.
 
 | Agent       | Session files                           |
 | ----------- | --------------------------------------- |

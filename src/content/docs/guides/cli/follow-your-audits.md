@@ -2,7 +2,7 @@
 title: Follow your Audits
 description: Read the newest Audit of a checkout or a branch, and turn on notifications for failed Audits.
 sidebar:
-  order: 3
+  order: 5
 ---
 
 You do not need the path to read an Audit:
