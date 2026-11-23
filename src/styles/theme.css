@@ -198,3 +198,8 @@ main:has(.sb-hero) > .content-panel {
   border-top: var(--ec-brdWd) solid var(--ec-brdCol);
   border-radius: var(--ec-brdRad);
 }
+/* Expressive Code places the copy button below the title bar; with no bar,
+   it centers on the first line. */
+.expressive-code .frame.is-terminal:not(.has-title) .copy {
+  top: 7px;
+}
