@@ -14,7 +14,7 @@ const docs = new URL('./src/content/docs/', import.meta.url);
 // and next links in sidebar order.
 const sidebar = groups
   .filter(({ directory }) => existsSync(new URL(directory, docs)))
-  .map(({ label, directory }) => ({ label, items: [{ autogenerate: { directory } }] }));
+  .map(({ label, directory, items }) => ({ label, items: items ?? [{ autogenerate: { directory } }] }));
 
 export default defineConfig({
   site: 'https://docs.switchbak.dev',

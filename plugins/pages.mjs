@@ -37,7 +37,8 @@ function readPage(file) {
   }
 }
 
-// Each .md page in sidebar order: by group, then `sidebar.order`, then path.
+// Each .md page in sidebar order: by group, the pages of the group's folder
+// before those of a subfolder, then `sidebar.order`, then path.
 // The home page (index.mdx) is left out: it is components, not Markdown.
 export function listPages() {
   const files = readdirSync(contentDir, { recursive: true })
@@ -54,11 +55,12 @@ export function listPages() {
       description: frontmatter.description,
       agent: frontmatter.agent,
       group: group === -1 ? groups.length : group,
+      subfolder: path.posix.dirname(file).split('/').slice(1).join('/'),
       order: frontmatter.sidebar?.order ?? Infinity,
       body: content.trim(),
     };
   });
-  return pages.sort((a, b) => a.group - b.group || a.order - b.order || a.file.localeCompare(b.file));
+  return pages.sort((a, b) => a.group - b.group || a.subfolder.localeCompare(b.subfolder) || a.order - b.order || a.file.localeCompare(b.file));
 }
 
 // The Markdown copy of a page: its title, its description, then its body, with
