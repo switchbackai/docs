@@ -48,9 +48,13 @@ The client sends a secret in a session file as it is. The warehouse masks it whe
 
 ## 2. Where a session goes
 
-### Your GitHub identity
+### Your sign-in identity
 
-When you log in with GitHub, Switchbak keeps your GitHub user id and your GitHub login. The id identifies you. The login is the name that Switchbak shows, and Switchbak updates it at each login. Switchbak does not keep your email from GitHub. GitHub sign-in also tells Switchbak which installations of the GitHub App you can access. To check that access again, Switchbak keeps the GitHub sign-in token of the App, encrypted. It drops the token when your access ends.
+When you log in with GitHub, Switchbak keeps your GitHub user id, your GitHub login, and the primary email of your GitHub account when GitHub verified it. The id identifies you. The login is the name that Switchbak shows, and Switchbak updates it at each login. Switchbak uses the email to suggest a link when you sign in with Google with the same email, and to check the email domain when an invite link of your workspace admits only approved domains. GitHub sign-in also tells Switchbak which installations of the GitHub App you can access. To check that access again, Switchbak keeps the GitHub sign-in token of the App, encrypted. It drops the token when your access ends.
+
+When you log in with Google, Switchbak keeps your Google account id and your verified Google email. The id identifies you. The email is the name that Switchbak shows. Switchbak keeps no Google token.
+
+When you link GitHub and Google, both identities belong to one Switchbak account. Switchbak merges no accounts: it refuses a link to an identity that another account holds.
 
 ### The warehouse
 

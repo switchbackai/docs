@@ -7,7 +7,7 @@ sidebar:
 
 Switchbak carries the sessions of your AI coding agents from your Mac to your organization's warehouse. Each pull request then gets a Receipt: the record of the sessions behind the change.
 
-1. [Set up Switchbak](../set-up/install.md): install the client, log in with GitHub, and connect GitHub
+1. [Set up Switchbak](../set-up/install.md): install the client, log in with GitHub or Google, and connect GitHub
 2. [Use Switchbak](../use-switchbak/the-receipt.md): read the Receipt on a pull request, run the CLI, and manage the members of your organization
 3. [Reference](../reference/all-commands.md): each command of the CLI, and the supported agents
 

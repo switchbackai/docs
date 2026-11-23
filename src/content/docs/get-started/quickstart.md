@@ -25,7 +25,7 @@ You need a Mac with Apple silicon, [Homebrew](https://brew.sh) and a GitHub acco
    brew install switchbackai/tap/switchbak
    ```
 
-2. [Log in](../set-up/log-in.md) with GitHub. Setup then watches each [installed agent](../set-up/agents-and-roots.md):
+2. [Log in](../set-up/log-in.md) with GitHub. To log in with Google, create your workspace at [app.switchbak.dev/signup](https://app.switchbak.dev/signup) first. Setup then watches each [installed agent](../set-up/agents-and-roots.md):
 
    ```bash
    switchbak login

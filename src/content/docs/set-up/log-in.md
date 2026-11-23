@@ -1,6 +1,6 @@
 ---
 title: Log in
-description: Log in with GitHub, join the organization of your team, and log in again when your access ends.
+description: Log in with GitHub or Google, link your accounts, choose a workspace, and log in again when your access ends.
 sidebar:
   order: 2
 ---
@@ -11,30 +11,72 @@ switchbak login
 
 Login opens your browser and prints a code. If the browser does not open, open the page that login prints.
 
-1. Sign in with GitHub
+1. Choose Continue with GitHub or Continue with Google
 2. Make sure that the page shows the code that login printed
 3. Press Approve
 
-On a Mac with no browser, as over SSH, run `switchbak login --device`. It prints a page and a code. Open the page on any device, type the code, sign in with GitHub, and press Approve. Approve only a code that you typed yourself.
+On a Mac with no browser, as over SSH, run `switchbak login --device`. It prints a page and a code. Open the page on any device, type the code, choose GitHub or Google, and press Approve. Approve only a code that you typed yourself.
 
-Login then makes your account, stores the credentials in your login keychain, and runs [setup](agents-and-roots.md). Your account is in a Switchbak organization:
+Login then stores the credentials in your login keychain and runs [setup](agents-and-roots.md). The uploads start when setup ends. Uploads and Audits do not need the GitHub App.
 
-- The organization of your team, when your team connected its GitHub organization and you are a member of that GitHub organization. The page asks "Join <team> as @login" before you approve. The admins of the team see each join.
-- A new organization, with you as its admin, in all other cases. An outside collaborator of a GitHub organization gets a new organization, and does not join the team.
+## Log in with GitHub
 
-The uploads start when setup ends. Uploads and Audits do not need the GitHub App.
+A login with GitHub makes your account when you have none. Your account is in a Switchbak workspace:
 
-When your organization has no GitHub installation, login ends with this question:
+- The workspace of your team, when your team connected its GitHub organization and you are a member of that GitHub organization. The page asks "Join <team> as @login" before you approve. The admins of the team see each join.
+- A new workspace, with you as its admin, in all other cases. An outside collaborator of a GitHub organization gets a new workspace, and does not join the team.
+
+When your workspace has no GitHub installation, login ends with this question:
 
 ```text
 Connect GitHub now? [Y/n]
 ```
 
-Press Return to [connect GitHub](connect-github.md) now. When your organization already has one, login prints `GitHub connected ✓` and asks nothing.
+Press Return to [connect GitHub](connect-github.md) now. When your workspace already has one, login prints `GitHub connected ✓` and asks nothing.
+
+## Log in with Google
+
+A login with Google does not make a workspace. Create your workspace first:
+
+1. Open [app.switchbak.dev/signup](https://app.switchbak.dev/signup) and choose Continue with Google
+2. Choose Personal or Organization. You cannot change the type later
+3. Name the workspace and press Create workspace
+4. Run `switchbak login` and choose Continue with Google
+
+Without a workspace, the page says "Create your workspace", and login stops with:
+
+```text
+the login was refused: No Switchbak workspace has <email>. Create your workspace at https://app.switchbak.dev/signup, then run switchbak login again.
+```
+
+A login with Google does not join the workspace of your team through GitHub. To join through your GitHub organization, log in with GitHub, or [link GitHub](#link-your-accounts) to your account.
+
+When your Google email is the email of an account that signs in with GitHub, the page says "An account with this email signs in with GitHub". Run `switchbak login` again and choose Continue with GitHub. To sign in with Google later, link it on the Account page.
+
+## Link your accounts
+
+You can sign in to one account with both GitHub and Google. Link the second one in the web app:
+
+1. Sign in at [app.switchbak.dev](https://app.switchbak.dev)
+2. Open the Account tab. Linked accounts lists GitHub and Google
+3. Press Link GitHub account or Link Google account, and sign in with it
+
+The page then says "Your Google account is linked. You can sign in with it."
+
+Switchbak merges no accounts. A link to a GitHub or Google account that another Switchbak account holds is refused: "This Google account belongs to another Switchbak account". Sign in with that account, or ask an admin. Each person links one GitHub account and one Google account. You cannot remove a link.
+
+When you sign in on the web with Google and your email is the email of an account that signs in with GitHub, the page says "An account with this email signs in with GitHub". Press Continue with GitHub. That sign-in links your Google account.
+
+## More than one workspace
+
+You can be a member of more than one workspace: a personal one and the workspace of your team, for example.
+
+- On the web, the sign-in opens the workspace that you used last. "Choose a workspace" lists the others. In a workspace, the menu beside its name in the header switches to another.
+- The page of `switchbak login` lists your workspaces and says "Choose the organization to log in to". This Mac sends to the one that you choose. Run `switchbak login` again to change it.
 
 ## Log in again
 
-A login with GitHub lasts while you are a member of a GitHub organization that your organization connected, or while the App is on your own GitHub account and your organization connected it. When that access ends, the uploads stop, and the watcher log says:
+A login with GitHub lasts while you are a member of a GitHub organization that your workspace connected, or while the App is on your own GitHub account and your workspace connected it. When that access ends, the uploads stop, and the watcher log says:
 
 ```text
 your access to <organization> ended: GitHub no longer lists one of its installations for your account. Ask an admin of <organization> for access, then run `switchbak login`
@@ -45,7 +87,7 @@ When the notifications are on, one banner says "Your access to <organization> en
 1. Ask an owner of the GitHub organization to make you a member
 2. Run `switchbak login`
 
-When GitHub no longer accepts your sign-in, the log tells you to run `switchbak login` again.
+A login with Google does not depend on GitHub access. When GitHub no longer accepts your sign-in, the log tells you to run `switchbak login` again.
 
 ## Log out
 
