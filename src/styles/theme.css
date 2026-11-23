@@ -188,3 +188,13 @@ main:has(.sb-hero) > .content-panel {
   color: var(--signal-text);
   background-color: var(--signal-surface);
 }
+
+/* A terminal block with no title drops its empty title bar and dots, so
+   a one-line command takes one line. */
+.expressive-code .frame.is-terminal:not(.has-title) .header {
+  display: none;
+}
+.expressive-code .frame.is-terminal:not(.has-title) pre {
+  border-top: var(--ec-brdWd) solid var(--ec-brdCol);
+  border-radius: var(--ec-brdRad);
+}
