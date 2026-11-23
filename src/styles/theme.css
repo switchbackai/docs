@@ -113,3 +113,78 @@ main:has(.sb-hero) > .content-panel {
   width: 16px;
   height: 16px;
 }
+
+/* The left nav, after docs.entire.com: small group labels that do not fold,
+   14px items 32px tall with a rounded hover and a tinted current page, air
+   between groups, and no rules. A nested group (Integrations) folds, and
+   reads as an item. */
+.sidebar-pane {
+  border-inline-end: 0;
+}
+.sidebar-content {
+  padding-top: 24px;
+}
+.sidebar-content ul {
+  --sl-sidebar-item-padding-inline: 12px;
+}
+.sidebar-content .top-level > li + li {
+  margin-top: 28px;
+}
+.sidebar-content .top-level > li > details > summary {
+  padding: 0 var(--sl-sidebar-item-padding-inline) 8px;
+  font-size: 12px;
+  line-height: 16px;
+  pointer-events: none;
+}
+.sidebar-content .top-level > li > details > summary .large {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.sidebar-content .top-level > li > details > summary .caret {
+  display: none;
+}
+.sidebar-content ul ul li {
+  margin-inline-start: 0;
+  border-inline-start: 0;
+  padding-inline-start: 0;
+}
+.sidebar-content ul ul ul li {
+  padding-inline-start: 12px;
+}
+.sidebar-content ul ul :is(a, summary) {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px var(--sl-sidebar-item-padding-inline);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+}
+.sidebar-content ul ul summary {
+  justify-content: space-between;
+}
+.sidebar-content ul ul summary .large {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+.sidebar-content ul ul summary .caret {
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+}
+.sidebar-content ul ul :is(a, summary):hover {
+  color: var(--text-primary);
+  background-color: var(--surface-raised);
+}
+.sidebar-content ul ul a[aria-current='page'],
+.sidebar-content ul ul a[aria-current='page']:hover,
+.sidebar-content ul ul a[aria-current='page']:focus {
+  font-weight: 500;
+  color: var(--signal-text);
+  background-color: var(--signal-surface);
+}

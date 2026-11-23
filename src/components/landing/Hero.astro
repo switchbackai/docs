@@ -28,17 +28,17 @@ const { overline, title } = Astro.props;
     width: 100vw;
     margin-inline: calc(50% - 50vw);
     margin-top: 0;
-    background-color: #0f1f1c;
+    background-color: #0a0a0c;
     background-image: url('/textures/contour-texture.svg');
     background-size: cover;
     background-position: center right;
-    color: #f8f6ef;
+    color: #ededee;
   }
   .sb-hero::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(15, 31, 28, 0.96) 0%, rgba(15, 31, 28, 0.82) 46%, rgba(15, 31, 28, 0.35) 100%);
+    background: linear-gradient(90deg, rgba(10, 10, 12, 0.96) 0%, rgba(10, 10, 12, 0.82) 46%, rgba(10, 10, 12, 0.35) 100%);
     pointer-events: none;
   }
   .inner {
@@ -70,7 +70,7 @@ const { overline, title } = Astro.props;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #3ccf9c;
+    color: #37c999;
   }
   h1 {
     margin: 0;
@@ -78,20 +78,20 @@ const { overline, title } = Astro.props;
     line-height: 58px;
     font-weight: 700;
     letter-spacing: -0.03em;
-    color: #f8f6ef;
+    color: #ededee;
     max-width: 640px;
   }
   .copy :global(p) {
     margin: 0;
     font-size: 17px;
     line-height: 27px;
-    color: #b2bcb3;
+    color: #a1a1a8;
     max-width: 560px;
   }
   .copy :global(p.note) {
     font-size: 13px;
     line-height: 19px;
-    color: #8a948c;
+    color: #85858d;
   }
   @media (max-width: 50em) {
     .inner {

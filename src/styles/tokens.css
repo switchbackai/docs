@@ -1,4 +1,4 @@
-/* switchbak design system v1 (claude.ai/artifact/WjSKx5KiDkj1krYAPfpdMV, version 1794982548-cbf8) — generated from tokens.json */
+/* Colors: the grey palette of the Switchbak app (switchback services/app/src/index.css, EPD-364), replacing the ink and paper of design system v1. Other tokens: switchbak design system v1 (claude.ai/artifact/WjSKx5KiDkj1krYAPfpdMV, version 1794982548-cbf8) — generated from tokens.json */
 /* Copy, do not edit by hand. Starlight's dark theme is the default (:root); light is [data-theme='light']. */
 
 :root {
@@ -25,22 +25,22 @@
 
 :root,
 ::backdrop {
-  --surface-base: #0f1f1c;
-  --surface-raised: #17302b;
-  --surface-sunken: #0b1816;
-  --surface-inverse: #f8f6ef;
-  --border-subtle: #26403a;
-  --border-strong: #35504a;
-  --text-primary: #f3f1e9;
-  --text-secondary: #b2bcb3;
-  --text-muted: #8a948c;
-  --text-inverse: #0f1f1c;
+  --surface-base: #0a0a0c;
+  --surface-raised: #141417;
+  --surface-sunken: #050506;
+  --surface-inverse: #fafafa;
+  --border-subtle: #1e1e23;
+  --border-strong: #303036;
+  --text-primary: #ededee;
+  --text-secondary: #a1a1a8;
+  --text-muted: #85858d;
+  --text-inverse: #0a0a0c;
   --text-on-signal: #07130f;
   --signal: #13b981;
   --signal-hover: #37c999;
-  --signal-text: #3ccf9c;
-  --signal-surface: #11362b;
-  --stone: #9aa59b;
+  --signal-text: #37c999;
+  --signal-surface: #0e261d;
+  --stone: #a1a1a8;
   --accent-warm: #a75e38;
   --status-success: #2fc993;
   --status-warning: #e0a33a;
@@ -54,29 +54,29 @@
 
 :root[data-theme='light'],
 [data-theme='light'] ::backdrop {
-  --surface-base: #f8f6ef;
+  --surface-base: #fafafa;
   --surface-raised: #ffffff;
-  --surface-sunken: #efece2;
-  --surface-inverse: #0f1f1c;
-  --border-subtle: #e6e3d9;
-  --border-strong: #d4d0c3;
-  --text-primary: #0f1f1c;
-  --text-secondary: #4a564f;
-  --text-muted: #646e66;
-  --text-inverse: #f8f6ef;
+  --surface-sunken: #f1f1f3;
+  --surface-inverse: #0a0a0c;
+  --border-subtle: #e4e4e7;
+  --border-strong: #c8c8cd;
+  --text-primary: #0a0a0c;
+  --text-secondary: #4a4a52;
+  --text-muted: #5f5f67;
+  --text-inverse: #fafafa;
   --text-on-signal: #07130f;
   --signal: #13b981;
   --signal-hover: #0f9e6e;
   --signal-text: #0a7a53;
   --signal-surface: #e3f3ec;
-  --stone: #6f7a71;
+  --stone: #55555c;
   --accent-warm: #874527;
   --status-success: #0a7a53;
-  --status-warning: #9a6a12;
+  --status-warning: #85590b;
   --status-danger: #b23a2a;
   --status-info: #3f6098;
-  --topo-line: #e4e1d4;
-  --shadow-sm: 0 1px 2px rgba(15,31,28,0.06), 0 1px 1px rgba(15,31,28,0.04);
-  --shadow-md: 0 4px 12px rgba(15,31,28,0.08);
-  --shadow-lg: 0 14px 36px rgba(15,31,28,0.12);
+  --topo-line: #dde7e3;
+  --shadow-sm: 0 1px 2px rgba(10,10,12,0.06), 0 1px 1px rgba(10,10,12,0.04);
+  --shadow-md: 0 4px 12px rgba(10,10,12,0.08);
+  --shadow-lg: 0 14px 36px rgba(10,10,12,0.12);
 }
