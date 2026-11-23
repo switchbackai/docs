@@ -12,11 +12,16 @@ sidebar:
 | `switchbak logout`               | Logs this Mac out, and removes the keychain items. Keeps the config.        |
 | `switchbak version`              | Prints the release you installed.                                           |
 | `switchbak connect`              | Connects GitHub, so that pull requests get a Receipt.                       |
+| `switchbak connect -print-url`   | Prints the Connect page for you to open, and waits. For a coding agent.     |
 | `switchbak setup`                | Selects each installed agent and common root, and loads the agents.         |
 | `switchbak setup -root <dir>`    | Replaces the roots. Repeat `-root` for each directory.                      |
+| `switchbak setup -agents <ids>`  | Watches the named agents, as in `-agents claude_code,codex`.                |
+| `switchbak setup -yes`           | Asks nothing. Fails if it finds nothing to watch or no root.                |
 | `switchbak configure`            | Chooses the agents, projects and checkout directories, and restarts.        |
 | `switchbak status`               | Prints installed, authenticated, connected, then the details.               |
 | `switchbak status -json`         | The state as JSON, for a coding agent. Exits non-zero unless it is ready.   |
+| `switchbak next`                 | Prints the next step of the setup, who does it, and the command.            |
+| `switchbak next -json`           | The next step as JSON, for a coding agent. `step` is `done` at the end.     |
 | `switchbak audit <path>`         | Prints the Verdict and the Findings of a session, and waits for them.       |
 | `switchbak audit -latest`        | The same, for your newest session that has an Audit.                        |
 | `switchbak audit -repo <dir>`    | The same, for the newest session of a checkout.                             |
