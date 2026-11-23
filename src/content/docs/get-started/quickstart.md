@@ -6,7 +6,7 @@ agent: |
 
   1. Check that this Mac has Apple silicon and Homebrew. If it does not, stop and tell me.
   2. Run the brew install command.
-  3. `switchbak login` and `switchbak connect` open my browser and ask me questions. Ask me to run each in my own terminal. Wait until I say that it is done.
+  3. `switchbak login` and `switchbak connect` open my browser and ask me questions. The first login asks me to create a Personal or a Team workspace. Ask me to run each in my own terminal. Wait until I say that it is done.
   4. Run `switchbak status` and tell me what it prints.
 sidebar:
   order: 2
@@ -16,6 +16,10 @@ next:
 ---
 
 Install the client, log in, and connect GitHub. Then make a small change with your agent and open a pull request. The pull request gets a Receipt.
+
+```bash
+brew install switchbackai/tap/switchbak && switchbak login
+```
 
 To see a Receipt before you start, open [switchbackai/docs#7](https://github.com/switchbackai/docs/pull/7). That repository uses Switchbak.
 
@@ -40,9 +44,17 @@ See [Install](../set-up/install.md).
 switchbak login
 ```
 
-Login opens your browser. Choose Continue with GitHub, make sure that the page shows the code that login printed, and press Approve. To log in with Google, create your workspace at [app.switchbak.dev/signup](https://app.switchbak.dev/signup) first. See [Log in](../set-up/log-in.md).
+Login opens your browser. Choose Continue with GitHub or Continue with Google.
 
 ![The login page of switchbak login, with Continue with Google and Continue with GitHub](quickstart/choose.png)
+
+The first time, the page says "Create your workspace":
+
+1. Make sure that the page shows the code that login printed
+2. Choose Personal for this tutorial. A Personal workspace is you alone, and gets Receipts on the repositories of your own GitHub account. To set up Switchbak for your team, choose Team: see [Log in](../set-up/log-in.md#your-first-login)
+3. Keep the name or change it, and press Create workspace
+
+You cannot change the type of a workspace later. The next time that you log in, the page shows the code and Approve:
 
 ![The approve page of switchbak login, with the code and the Approve button](quickstart/approve.png)
 
@@ -54,7 +66,7 @@ Setup then watches each [installed agent](../set-up/agents-and-roots.md) and the
 switchbak connect
 ```
 
-Connect opens GitHub. Select your account, select your repository, and press Install & Authorize. The page then says "Switchbak is connected". See [Connect GitHub](../set-up/connect-github.md).
+Connect opens GitHub. Select your own account, select your repository, and press Install & Authorize. A Personal workspace connects only your own account. The page then says "Switchbak is connected". See [Connect GitHub](../set-up/connect-github.md).
 
 Check the installation:
 

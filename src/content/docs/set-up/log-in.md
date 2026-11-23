@@ -1,6 +1,6 @@
 ---
 title: Log in
-description: Log in with GitHub or Google, link your accounts, choose a workspace, and log in again when your access ends.
+description: Log in with GitHub or Google, create a Personal or a Team workspace, link your accounts, and log in again when your access ends.
 agent: |
   Set up Switchbak on this Mac with me. Switchbak keeps a Receipt of each change that a coding agent makes.
 
@@ -8,9 +8,9 @@ agent: |
 
   1. Check that this Mac has Apple silicon and Homebrew. If it does not, stop and tell me.
   2. Install the client: `brew install switchbackai/tap/switchbak`.
-  3. Sign in: run `switchbak login --device`. It prints a code and a link. Give both to me, and wait while I approve the code in my browser.
+  3. Sign in: run `switchbak login --device`. It prints a code and a link. Give both to me, and wait while I approve the code in my browser. The first time, I create a Personal or a Team workspace there.
   4. Find the directories on this Mac that hold my git checkouts, for example ~/code or ~/src. Find the coding agents that I use, from these ids: claude_code, codex, cursor, gemini_cli, opencode. Show me the directories. Then run `switchbak setup -agents <ids> -root <dir> -yes`, with the ids comma-separated and one `-root` for each directory.
-  5. Connect GitHub. Ask me if I am an admin, a member, or in a personal workspace. Skip this step for a member: an admin connects GitHub. In a personal workspace, ask me first, and skip it if I say no. Run `switchbak connect -print-url`. It prints a page on stdout and waits. Give me the page: I open it and install the Switchbak GitHub App. Wait for the command to finish.
+  5. Connect GitHub. Ask me if I am an admin, a member, or in a personal workspace. Skip this step for a member: an admin connects GitHub. In a personal workspace, ask me first, and skip it if I say no. A personal workspace connects only my own GitHub account, and a team workspace only GitHub organizations. Run `switchbak connect -print-url`. It prints a page on stdout and waits. Give me the page: I open it and install the Switchbak GitHub App. Wait for the command to finish.
   6. Run `switchbak next -json` and do the step it gives. When `by` is `agent`, run its `command`. When `by` is `person`, give me its `text` and wait until I say it is done. When `by` is `admin`, give me its `text` and stop. Repeat until `step` is `done`, or until the step only waits for a session or a pull request.
   7. Run `switchbak status -json`. Tell me what is ready and what is still to do.
 sidebar:
@@ -31,12 +31,34 @@ On a Mac with no browser, as over SSH, run `switchbak login --device`. It prints
 
 Login then stores the credentials in your login keychain and runs [setup](agents-and-roots.md). The uploads start when setup ends. Uploads and Audits do not need the GitHub App.
 
-## Log in with GitHub
+## Your first login
 
-A login with GitHub makes your account when you have none. Your account is in a Switchbak workspace:
+The first login of a new account asks for a workspace. The page says "Create your workspace":
 
-- The workspace of your team, when your team connected its GitHub organization and you are a member of that GitHub organization. The page asks "Join <team> as @login" before you approve. The admins of the team see each join.
-- A new workspace, with you as its admin, in all other cases. An outside collaborator of a GitHub organization gets a new workspace, and does not join the team.
+1. Make sure that the page shows the code that login printed
+2. Choose the type of the workspace:
+   - Personal: you alone. Pull requests in the repositories of your own GitHub account get a Receipt
+   - Team: you and your team. Pull requests in the repositories of a GitHub organization get a Receipt. You are its admin, and you invite the members
+3. Keep the name or change it. For a team, give the name of your team
+4. Press Create workspace
+
+You cannot change the type of a workspace later. To add a second workspace, create it at [app.switchbak.dev/signup](https://app.switchbak.dev/signup). See [More than one workspace](#more-than-one-workspace).
+
+The first login works the same with GitHub and with Google. A Google account needs an email that Google verified. Without one, login stops with:
+
+```text
+the login was refused: Google has not verified the email of <email>. Verify it with Google, then run switchbak login again.
+```
+
+When your email is the email of an account that signs in with GitHub, the page says "An account with this email signs in with GitHub". Run `switchbak login` again and choose Continue with GitHub. To sign in with Google later, link it on the Profile page.
+
+## Join your team
+
+When your team already connected its GitHub organization and you are a member of that GitHub organization, a login with GitHub asks "Join <team> as @login" before you approve. The admins of the team see each join. An outside collaborator of a GitHub organization does not join. To make your own workspace instead, press Create a new workspace instead.
+
+A login with Google does not join the workspace of your team through GitHub. To join through your GitHub organization, log in with GitHub, or [link GitHub](#link-your-accounts) to your account. An invite link from an admin works with both.
+
+## Connect GitHub after login
 
 When your workspace has no GitHub installation, login ends with this question:
 
@@ -44,26 +66,7 @@ When your workspace has no GitHub installation, login ends with this question:
 Connect GitHub now? [Y/n]
 ```
 
-Press Return to [connect GitHub](connect-github.md) now. When your workspace already has one, login prints `GitHub connected ✓` and asks nothing.
-
-## Log in with Google
-
-A login with Google does not make a workspace. Create your workspace first:
-
-1. Open [app.switchbak.dev/signup](https://app.switchbak.dev/signup) and choose Continue with Google
-2. Choose Personal or Organization. You cannot change the type later
-3. Name the workspace and press Create workspace
-4. Run `switchbak login` and choose Continue with Google
-
-Without a workspace, the page says "Create your workspace", and login stops with:
-
-```text
-the login was refused: No Switchbak workspace has <email>. Create your workspace at https://app.switchbak.dev/signup, then run switchbak login again.
-```
-
-A login with Google does not join the workspace of your team through GitHub. To join through your GitHub organization, log in with GitHub, or [link GitHub](#link-your-accounts) to your account.
-
-When your Google email is the email of an account that signs in with GitHub, the page says "An account with this email signs in with GitHub". Run `switchbak login` again and choose Continue with GitHub. To sign in with Google later, link it on the Profile page.
+Press Return to [connect GitHub](connect-github.md) now. A Personal workspace connects your own GitHub account, and a Team workspace connects your GitHub organization. When your workspace already has an installation, login prints `GitHub connected ✓` and asks nothing.
 
 ## Link your accounts
 
