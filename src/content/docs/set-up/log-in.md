@@ -24,13 +24,13 @@ Login then makes your account, stores the credentials in your login keychain, an
 
 The uploads start when setup ends. Uploads and Audits do not need the GitHub App.
 
-Login ends with this question:
+When your organization has no GitHub installation, login ends with this question:
 
 ```text
 Connect GitHub now? [Y/n]
 ```
 
-Press Return to [connect GitHub](connect-github.md) now.
+Press Return to [connect GitHub](connect-github.md) now. When your organization already has one, login prints `GitHub connected ✓` and asks nothing.
 
 ## Log in again
 
