@@ -15,4 +15,4 @@ Put these in your email:
 
 Do not attach a session file. A session file holds your prompts and your code. Give the path of the session instead.
 
-Look first in the [FAQ](faq.md), and in [If there is no Receipt](../start-here/get-started.md#if-there-is-no-receipt).
+Look first in the [FAQ](faq.md), and in [If there's no Receipt](../guides/cli/set-up.md#if-theres-no-receipt).

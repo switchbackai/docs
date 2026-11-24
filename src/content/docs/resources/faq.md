@@ -15,11 +15,11 @@ Switchbak is in beta. During the beta, these terms apply:
 
 ## Which computers does the client run on?
 
-A Mac with Apple silicon (M1 or later). The client does not run on a Mac with an Intel processor, on Windows or on Linux. [Install the client](../guides/cli/install.md) names what else you need.
+A Mac with Apple silicon (M1 or later). The client does not run on a Mac with an Intel processor, on Windows or on Linux. [Set up the CLI](../guides/cli/set-up.md#before-you-start) names what else you need.
 
 ## Which agents does Switchbak support?
 
-Claude Code, Codex, Cursor, Gemini CLI and OpenCode. [Supported agents](../guides/cli/supported-agents.md) names where each keeps its session files.
+Claude Code, Codex, Cursor, Gemini CLI and OpenCode. [Supported agents](../guides/cli/set-up.md#supported-agents) names where each keeps its session files.
 
 ## Who can read my sessions?
 
@@ -31,8 +31,8 @@ Everyone who can see the pull request can see the check run and the comment. Onl
 
 ## Why does my pull request have no Receipt?
 
-[If there is no Receipt](../start-here/get-started.md#if-there-is-no-receipt) lists the causes and what to do for each.
+[If there's no Receipt](../guides/cli/set-up.md#if-theres-no-receipt) lists the causes and what to do for each.
 
 ## How do I remove a session?
 
-Run `switchbak erase <path>`. [Erase a session](../guides/cli/erase-a-session.md) says what it removes and what stays.
+Run `switchbak erase <path>`. [Erase a session](../guides/cli/manage.md#erase-a-session) says what it removes and what stays.

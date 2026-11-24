@@ -6,7 +6,7 @@ sidebar:
   order: 1
 ---
 
-An admin of your organization sees its members and can remove a member. The person who made the organization is its admin. To make one, choose Team at your [first login](../guides/cli/log-in.md#your-first-login), or at [app.switchbak.dev/signup](https://app.switchbak.dev/signup). A Personal workspace has one member, you, and makes no invite links.
+An admin of your organization sees its members and can remove a member. The person who made the organization is its admin. To make one, choose Team at your [first login](../guides/accounts-and-workspaces.md#your-workspace), or at [app.switchbak.dev/signup](https://app.switchbak.dev/signup). A Personal workspace has one member, you, and makes no invite links.
 
 1. Sign in at [app.switchbak.dev](https://app.switchbak.dev)
 2. Open the menu of your avatar, choose Settings, and open the Members tab. The tab shows the role and the client of each member

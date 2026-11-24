@@ -1,18 +1,6 @@
 ---
 title: Connect GitHub
 description: Install the Switchbak App on a GitHub account or organization, so that its pull requests get a Receipt.
-agent: |
-  Set up Switchbak on this Mac with me. Switchbak keeps a Receipt of each change that a coding agent makes.
-
-  Run each command yourself. No command reads stdin. I approve the sign-in code and the GitHub App myself. Never ask me for a password, a token or an invite link. Skip a step that is already done.
-
-  1. Check that this Mac has Apple silicon and Homebrew. If it does not, stop and tell me.
-  2. Install the client: `brew install switchbackai/tap/switchbak`.
-  3. Sign in: run `switchbak login --device`. It prints a code and a link. Give both to me, and wait while I approve the code in my browser.
-  4. Find the directories on this Mac that hold my git checkouts, for example ~/code or ~/src. Find the coding agents that I use, from these ids: claude_code, codex, cursor, gemini_cli, opencode. Show me the directories. Then run `switchbak setup -agents <ids> -root <dir> -yes`, with the ids comma-separated and one `-root` for each directory.
-  5. Connect GitHub. Ask me if I am an admin, a member, or in a personal workspace. Skip this step for a member: an admin connects GitHub. In a personal workspace, ask me first, and skip it if I say no. A personal workspace connects only my own GitHub account, and a team workspace only GitHub organizations. Run `switchbak connect -print-url`. It prints a page on stdout and waits. Give me the page: I open it and install the Switchbak GitHub App. Wait for the command to finish.
-  6. Run `switchbak next -json` and do the step it gives. When `by` is `agent`, run its `command`. When `by` is `person`, give me its `text` and wait until I say it is done. When `by` is `admin`, give me its `text` and stop. Repeat until `step` is `done`, or until the step only waits for a session or a pull request.
-  7. Run `switchbak status -json`. Tell me what is ready and what is still to do.
 sidebar:
   label: "GitHub"
   order: 1
@@ -22,7 +10,7 @@ sidebar:
 switchbak connect
 ```
 
-Do this once for each GitHub organization or account whose pull requests get a Receipt. Pull requests get no Receipt until it is done. [Read an Audit](../../guides/cli/read-an-audit.md) does not need it.
+Do this once for each GitHub organization or account whose pull requests get a Receipt. Pull requests get no Receipt until it is done. [Reading an Audit](../../guides/cli/audits.md) does not need it.
 
 The type of your workspace decides what you can connect:
 
@@ -31,14 +19,16 @@ The type of your workspace decides what you can connect:
 | Personal  | Your own GitHub account only |
 | Team      | GitHub organizations only    |
 
-1. Connect opens the GitHub page that installs the Switchbak App. GitHub lists your account and your organizations, and marks each one that has the App with Configure
-2. Select your own account for a Personal workspace, or your organization for a Team workspace
-3. Select which repositories the GitHub App may read
-4. Press Install & Authorize
+1. Connect opens Settings, Integrations on [app.switchbak.dev](https://app.switchbak.dev). Sign in if it asks
+2. Press Connect GitHub. The Connect GitHub step lists your own account or your organizations
+3. Press Install next to your own account for a Personal workspace, or next to your organization for a Team workspace. If the organization is not in the list, type its name in Organization on GitHub
+4. On GitHub, select which repositories the GitHub App may read, and press Install & Authorize
 
-GitHub sends your browser back to Switchbak, and the page says "Switchbak is connected". Connect then prints `✓ GitHub connected`.
+GitHub sends your browser back to Switchbak, and the step says "GitHub is connected". Connect then prints `✓ GitHub connected`.
 
-When your organization is already connected, connect prints the connected accounts and opens the same GitHub page, so that you can install on another account.
+When your organization is already connected, connect prints the connected accounts and opens the same page, so that you can install on another account.
+
+A member sees "An Admin connects GitHub for this workspace." on the page. Ask an admin to run `switchbak connect`.
 
 The wrong type of account connects nothing:
 
@@ -51,11 +41,7 @@ A member of a GitHub organization who is not an owner sees "Waiting for an owner
 
 ## Connect from the web app
 
-An admin can also connect GitHub on [app.switchbak.dev](https://app.switchbak.dev). In a Personal workspace, the list shows only your own account:
-
-1. Open the Overview. In the Get started checklist, press Install GitHub App
-2. In Connect GitHub, press Install next to your organization. If the organization is not in the list, type its name in Organization on GitHub
-3. On GitHub, select the repositories and press Install & Authorize
+An admin can also connect GitHub on [app.switchbak.dev](https://app.switchbak.dev) without the CLI. Open the Overview, and in the Get started checklist press Install GitHub App. The Connect GitHub step is the same as in the steps above.
 
 ![The Connect GitHub step on the Overview: the permissions of the App, the organizations with Install, and the field Organization on GitHub](github/step.png)
 
