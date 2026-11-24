@@ -56,8 +56,9 @@ You can belong to several workspaces, such as your personal one and your team's.
 
 - **On the web**: signing in opens the workspace you used last. "Choose a workspace" lists the others, and the menu next to the workspace name in the header switches between them.
 - **On your Mac**: the `switchbak login` page lists your workspaces and asks you to "Choose the organization to log in to". This Mac sends sessions to the one you pick. Run `switchbak login` again to change it.
-- **Which one this Mac uses**: run `switchbak whoami`. `switchbak status` prints the same on its `account` line:
+- **Which one this Mac uses**: run `switchbak whoami`. `switchbak status` prints the same on its `account` and `workspace` lines:
 
   ```text
-  github octo · google octo@example.com · workspace Acme (Team)
+  account   github octo · google octo@example.com
+  workspace Acme (Team)
   ```

@@ -65,7 +65,12 @@ To see the account and the workspace that you logged in with, run:
 switchbak whoami
 ```
 
-It prints, for example, `github octo · workspace octo (Personal)`.
+It prints, for example:
+
+```text
+account   github octo
+workspace octo (Personal)
+```
 
 ## 4. Connect GitHub
 

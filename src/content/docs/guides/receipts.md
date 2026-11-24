@@ -1,16 +1,28 @@
 ---
-title: The Receipt on a pull request
-description: Read the intent, false claims, blast radius and scope that the Receipt records for a pull request.
+title: Receipt
+description: Read the intent, false claims, blast radius and scope that the Receipt records for a change.
 sidebar:
   label: "Receipts"
   order: 1
 ---
 
+The Receipt is the distilled, cited record that holds the intent, constraints, decisions, redirects, negatives, open questions, and each changed path matched to its cited reason. Receipts are created per Changeset at one head, and it pulls together every Session that produced that change. Each stored Receipt never changes, instead a change (e.g., PR) gets a new one whenever its head or inputs change.
+
+## How a Receipt is created
+
+Here's how a Receipt is produced: 
+
+1. The client on your laptop sends session streams to Switchbak. 
+2. Each stream goes to the Audit Service. It returns a Verdict (pass / review / fail) and Findings (fix, ask, undecided, claim). This step is per Session, not per PR.
+3. Switchbak links and attributes a Changeset to the Sessions that produced it; several sessions can feed one Changeset. 
+4. The Receipt is built from the audits of the attributed sessions, persisted, then shown in the Switchbak UI and on the GitHub check. 
+
+## Receipt on a GitHub PR
 On each push to a pull request in a connected repository, the Switchbak App
 writes a Receipt in two places: a check run named `🧾 Receipt`, and one comment
 that it edits on each push. The comment is short:
 
-> ### 🧾 Receipt
+> ##### 🧾 Receipt
 >
 >> **🎯 Add a small retry helper for transient payment API failures.** <sub>session</sub>
 >
@@ -22,8 +34,6 @@ that it edits on each push. The comment is short:
 
 The quote is the intent of the change, in the words of the session. The
 citation after it says who stated it and in which turn.
-
-## The three columns
 
 The table has three columns:
 
@@ -37,7 +47,7 @@ The table has three columns:
 
 A red or yellow count links to the check, which lists the detail.
 
-## The check run
+### The check run
 
 The check opens with the same intent and table, then these sections:
 
@@ -47,7 +57,7 @@ The check opens with the same intent and table, then these sections:
   Each item cites its turn. An item with no turn is not shown.
 - ↔️ Scope diff: each changed path with a mark and the reason from the session.
 
-## Scope marks
+### Scope marks
 
 | Mark | Meaning                                                                                             |
 | ---- | --------------------------------------------------------------------------------------------------- |

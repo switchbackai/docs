@@ -26,7 +26,7 @@ The type of your workspace decides what you can connect:
 
 GitHub sends your browser back to Switchbak, and the step says "GitHub is connected". Connect then prints `✓ GitHub connected`.
 
-When your organization is already connected, connect prints the connected accounts and opens the same page, so that you can install on another account.
+When your organization is already connected, connect prints the connected accounts and opens the same page. To add another organization to a Team workspace, press Connect another organization, then Install next to it.
 
 A member sees "An Admin connects GitHub for this workspace." on the page. Ask an admin to run `switchbak connect`.
 
