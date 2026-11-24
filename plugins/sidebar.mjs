@@ -10,6 +10,7 @@ export const groups = [
     directory: 'guides',
     items: [
       { slug: 'guides/receipts' },
+      { slug: 'guides/accounts-and-workspaces' },
       { label: 'CLI', collapsed: true, items: [{ autogenerate: { directory: 'guides/cli' } }] },
     ],
   },
