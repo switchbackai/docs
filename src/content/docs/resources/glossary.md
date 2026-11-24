@@ -9,11 +9,11 @@ sidebar:
 - **Agent**: a coding agent whose sessions Switchbak sends, for example Claude Code or Codex. See [Supported agents](../guides/cli/set-up.md#supported-agents).
 - **Audit**: the check of one session by the Audit Service. It gives a Verdict and Findings. See [Audits in your terminal](../guides/cli/audits.md).
 - **Audit Service**: the service that reads each uploaded session and answers with a Verdict and Findings. See [The Audit Service](../security/security-and-privacy.md#the-audit-service).
-- **Blast radius**: low, medium or high, from rules on the changed paths of a pull request, with the reason. See [The three columns](../guides/receipts.md#the-three-columns).
+- **Blast radius**: low, medium or high, from rules on the changed paths of a pull request, with the reason. See [Receipt on a GitHub PR](../guides/receipts.md#receipt-on-a-github-pr).
 - **Check run**: the `🧾 Receipt` check on a pull request. It holds the full Receipt. See [The check run](../guides/receipts.md#the-check-run).
 - **Decision record**: the section of the check run that lists the decisions of the session, each with the option that it rejected, and the turn that states it. See [The check run](../guides/receipts.md#the-check-run).
 - **Erase**: `switchbak erase <path>` removes one session and each Receipt that quotes it from the warehouse. See [Erase a session](../guides/cli/manage.md#erase-a-session).
-- **False claims**: the claims that a session made and that its own tool results do not back. See [The three columns](../guides/receipts.md#the-three-columns).
+- **False claims**: the claims that a session made and that its own tool results do not back. See [Receipt on a GitHub PR](../guides/receipts.md#receipt-on-a-github-pr).
 - **Findings**: what the Audit of a session found, one line for each. See [Audits in your terminal](../guides/cli/audits.md).
 - **GitHub App**: the Switchbak App on a GitHub account or organization. It writes the Receipt on each pull request. See [GitHub](../admin/integrations/github.md).
 - **Intent**: the purpose of the change, in the words of the session, with the turn that states it. The Receipt opens with it. See [Receipts](../guides/receipts.md).
