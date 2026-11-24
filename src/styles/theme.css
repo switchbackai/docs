@@ -203,3 +203,12 @@ main:has(.sb-hero) > .content-panel {
 .expressive-code .frame.is-terminal:not(.has-title) .copy {
   top: 7px;
 }
+
+/* The header's GitHub link: grey like the theme switch, brighter on hover,
+   in place of Starlight's accent that turns white on hover. */
+header.header a[rel='me'] {
+  color: var(--text-secondary);
+}
+header.header a[rel='me']:hover {
+  color: var(--text-primary);
+}
